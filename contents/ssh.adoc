@@ -1,0 +1,43 @@
+== ssh
+
+* ref. https://wiki.archlinux.jp/index.php/SSH_%E9%8D%B5[ArchWiki / SSH 鍵]
+
+[source,bash]
+----
+# 鍵の生成
+ssh-keygen -t ecdsa -b 256 -C "your-email@example.com" -f id_ecdsa
+ssh-keygen -t rsa -b 4096 -C "your-email@example.com" -f id_rsa
+
+# 既存鍵の確認
+ssh-keygen -l -f id_rsa.pub
+
+# 秘密鍵から公開鍵を生成
+ssh-keygen -y -f id_rsa > id_rsa.pub
+
+# リモートサーバーに公開鍵をコピー
+ssh-copy-id -i id_rsa.pub -p port your-name@address
+
+# リモートホストの情報を登録
+ssh-keyscan -H address >> known_hosts
+----
+
+`ssh-keygen`::
++
+--
+[horizontal]
+`-f`::: 入出力ファイルの指定
+`-y`::: 秘密鍵から公開鍵を生成。 stdout に出力されるため必要に応じてリダイレクト
+`-l`::: 鍵の情報を表示
+--
+`ssh-copy-id`::
++
+--
+[horizontal]
+`-i`::: インプットとなる公開鍵の指定
+--
+`ssh-keyscan`::
++
+--
+[horizontal]
+`-H`::: リモートホストの情報をハッシュ化
+--
