@@ -1,0 +1,22 @@
+== mysql
+
+[source,bash]
+----
+# ダンプ
+mysqldump -h 127.0.0.1 -u user-name -p --single-transaction database-name > dump.sql
+# リストア
+mysql -h 127.0.0.1 -u user-name -p database-name < dump.sql
+----
+
+共通::
++
+--
+[horizontal]
+`-p`::: パスワード入力を要求する
+--
+mysqldump::
++
+--
+[horizontal]
+`--single-transaction`::: InnoDB の場合にはアプリケーションをブロックすることなく、 START TRANSACTION が発行された時点のデータベースの一貫した状態をダンプする
+--

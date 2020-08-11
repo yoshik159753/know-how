@@ -1,5 +1,7 @@
 = *nix tips
 
+include::./contents/mysql.adoc[]
+
 include::./contents/ssh.adoc[]
 
 include::./contents/gpg.adoc[]
