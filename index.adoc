@@ -1,5 +1,7 @@
 = *nix tips
 
+include::./contents/duplicity.adoc[]
+
 include::./contents/mysql.adoc[]
 
 include::./contents/ssh.adoc[]

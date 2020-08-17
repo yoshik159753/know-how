@@ -1,0 +1,31 @@
+== duplicity (バックアップ)
+
+--
+[source,bash]
+----
+# バックアップ時
+duplicity --allow-source-mismatch ${src dir} file:///${dest dir} # <1> <2>
+duplicity --dry-run --allow-source-mismatch ${src dir} file:///${dest dir}
+
+# リストア時
+duplicity file:///{src dir} ${dest dir} # <3>
+
+# バックアップのファイル一覧出力
+duplicity list-current-files <url> > list.txt # <4>
+
+# 差分チェック(ちょっと時間かかる)
+duplicity verify file:///{src dir} ${target dir}
+----
+<1> ${src dir} の配下がバックアップの対象となる(${src dir} 自体は対象外)
+<2> ${dest dir} 配下にバックアップファイルが生成される(${src dir} はコピーされない)。例えば file:///foo/bar を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される
+<3> ${dest dir} はディレクトリがなかった場合は生成される(ディレクトリ指定がなければ直下にリストアされる)
+<4> 標準出力に出力されるだけなので必要に応じてリダイレクト
+--
+
+バックアップ時::
++
+--
+[horizontal]
+`--allow-source-mismatch`:::
+ディレクトリからディレクトリなど同一ファイルシステム間でバックアップする場合は警告終了となりバックアップできない。問題ない場合はこのオプションを付与する。
+--
