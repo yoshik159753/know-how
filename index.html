@@ -558,6 +558,29 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 </dd>
 </dl>
 </div>
+<div class="sect2">
+<h3 id="_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update &amp;&amp; \
+sudo apt upgrade -y &amp;&amp; \
+sudo apt install -y mysql-server mysql-client
+
+sudo mysql -u root &lt;&lt; EOS
+CREATE DATABASE test_db;
+SHOW DATABASES;
+CREATE USER 'test_user'@'%' IDENTIFIED BY 'password';
+SELECT user, host FROM mysql.user;
+GRANT ALL ON test_db.* TO test_user;
+SHOW GRANTS FOR 'test_user'@'%';
+USE test_db;
+SHOW TABLES;
+EOS
+
+# conncet: mysql -h localhost -u test_user -p test_db</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -763,7 +786,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-17 11:51:24 +0900
+Last updated 2020-08-20 09:14:37 +0900
 </div>
 </div>
 </body>

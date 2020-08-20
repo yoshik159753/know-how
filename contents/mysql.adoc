@@ -20,3 +20,25 @@ mysqldump::
 [horizontal]
 `--single-transaction`::: InnoDB の場合にはアプリケーションをブロックすることなく、 START TRANSACTION が発行された時点のデータベースの一貫した状態をダンプする
 --
+
+=== ubuntu でざっくり使える状態にするスクリプト
+
+[source,bash]
+----
+sudo apt update && \
+sudo apt upgrade -y && \
+sudo apt install -y mysql-server mysql-client
+
+sudo mysql -u root << EOS
+CREATE DATABASE test_db;
+SHOW DATABASES;
+CREATE USER 'test_user'@'%' IDENTIFIED BY 'password';
+SELECT user, host FROM mysql.user;
+GRANT ALL ON test_db.* TO test_user;
+SHOW GRANTS FOR 'test_user'@'%';
+USE test_db;
+SHOW TABLES;
+EOS
+
+# conncet: mysql -h localhost -u test_user -p test_db
+----
