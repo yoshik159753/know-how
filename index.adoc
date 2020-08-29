@@ -1,5 +1,7 @@
 = *nix tips
 
+include::./contents/python.adoc[]
+
 include::./contents/duplicity.adoc[]
 
 include::./contents/mysql.adoc[]
