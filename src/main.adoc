@@ -1,4 +1,7 @@
 = *nix tips
+:toc: left
+:toclevels: 5
+:icons: font
 
 include::./contents/python.adoc[]
 

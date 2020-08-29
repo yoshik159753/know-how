@@ -435,12 +435,124 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>*nix tips</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_python">python</a>
+<ul class="sectlevel2">
+<li><a href="#_pipenv">pipenv</a></li>
+<li><a href="#_pyenv">pyenv</a></li>
+</ul>
+</li>
+<li><a href="#_duplicity_バックアップ">duplicity (バックアップ)</a></li>
+<li><a href="#_mysql">mysql</a>
+<ul class="sectlevel2">
+<li><a href="#_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</a></li>
+</ul>
+</li>
+<li><a href="#_ssh">ssh</a></li>
+<li><a href="#_gpg">gpg</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_python">python</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_pipenv">pipenv</h3>
+<div class="paragraph">
+<p>pipenv は python のバージョン含めた仮想環境を構築する。(pyenv + venv)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># 仮想環境を起動(抜けるときは exit or ctrl+D)
+pipenv shell
+
+# 仮想環境のパス
+pipenv --venv
+
+# 仮想環境の削除
+pipenv --rm
+
+# パッケージの一覧を確認
+pipenv graph
+
+# 仮想環境の作成
+pipenv --python 3.6
+
+# パッケージのインストール
+pipenv install numpy
+pipenv install --dev autopep8 flake8 <i class="conum" data-value="1"></i><b>(1)</b>
+
+# pipfile からのインストール(引数なしで install)
+pipenv install
+pipenv install --dev <i class="conum" data-value="1"></i><b>(1)</b>
+
+# pipfile.lock からのインストール
+pipenv sync
+pipenv sync --dev <i class="conum" data-value="1"></i><b>(1)</b>
+
+# requirements からのインストール
+pipenv install -r ./requirements.txt</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>--dev で開発環境向けにインストール</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>パッケージを消すときは下記の通り。 <a href="https://qiita.com/eduidl/items/c0e8256bb3a5a735d19c">(Pipenv uninstallよりcleanの方が多分便利)</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>pipfileから対象を削除</p>
+</li>
+<li>
+<p>pipenv clean</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pyenv">pyenv</h3>
+<div class="paragraph">
+<p>pyenv は python のバージョンを切り替える。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash"># インストール可能なpythonのバージョン一覧確認
+pyenv install --list
+
+# バージョンを指定してpythonをインストール
+pyenv install 3.6.7
+
+# 特定バージョンのアンインストール
+pyenv uninstall &lt;Version&gt;
+
+# インストール済みのバージョン一覧の確認
+pyenv versions
+
+# pythonのバージョンをグローバルで切り替える
+pyenv global 3.6.7
+
+# 特定のディレクトリ内でのバージョンを指定する
+pyenv local 3.6.7</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_duplicity_バックアップ">duplicity (バックアップ)</h2>
 <div class="sectionbody">
@@ -449,34 +561,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash"># バックアップ時
-duplicity --allow-source-mismatch ${src dir} file:///${dest dir} # <b class="conum">(1)</b> <b class="conum">(2)</b>
+duplicity --allow-source-mismatch ${src dir} file:///${dest dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
 duplicity --dry-run --allow-source-mismatch ${src dir} file:///${dest dir}
 
 # リストア時
-duplicity file:///{src dir} ${dest dir} # <b class="conum">(3)</b>
+duplicity file:///{src dir} ${dest dir} <i class="conum" data-value="3"></i><b>(3)</b>
 
 # バックアップのファイル一覧出力
-duplicity list-current-files &lt;url&gt; &gt; list.txt # <b class="conum">(4)</b>
+duplicity list-current-files &lt;url&gt; &gt; list.txt <i class="conum" data-value="4"></i><b>(4)</b>
 
 # 差分チェック(ちょっと時間かかる)
 duplicity verify file:///{src dir} ${target dir}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>${src dir} の配下がバックアップの対象となる(${src dir} 自体は対象外)</p>
-</li>
-<li>
-<p>${dest dir} 配下にバックアップファイルが生成される(${src dir} はコピーされない)。例えば <a href="file:///foo/bar" class="bare">file:///foo/bar</a> を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される</p>
-</li>
-<li>
-<p>${dest dir} はディレクトリがなかった場合は生成される(ディレクトリ指定がなければ直下にリストアされる)</p>
-</li>
-<li>
-<p>標準出力に出力されるだけなので必要に応じてリダイレクト</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>${src dir} の配下がバックアップの対象となる(${src dir} 自体は対象外)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>${dest dir} 配下にバックアップファイルが生成される(${src dir} はコピーされない)。例えば <a href="file:///foo/bar" class="bare">file:///foo/bar</a> を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>${dest dir} はディレクトリがなかった場合は生成される(ディレクトリ指定がなければ直下にリストアされる)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>標準出力に出力されるだけなので必要に応じてリダイレクト</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -720,7 +836,7 @@ gpg --decrypt secret.txt.asc</code></pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -786,7 +902,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-20 09:14:37 +0900
+Last updated 2020-08-29 22:06:39 +0900
 </div>
 </div>
 </body>
