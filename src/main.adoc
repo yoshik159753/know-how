@@ -3,6 +3,8 @@
 :toclevels: 5
 :icons: font
 
+include::./contents/virtualbox.adoc[]
+
 include::./contents/python.adoc[]
 
 include::./contents/duplicity.adoc[]

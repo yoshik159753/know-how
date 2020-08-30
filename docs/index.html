@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_virtualbox">VirtualBox</a></li>
 <li><a href="#_python">python</a>
 <ul class="sectlevel2">
 <li><a href="#_pipenv">pipenv</a></li>
@@ -461,6 +462,165 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_virtualbox">VirtualBox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VirtualBox で環境作る際のノウハウ。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(任意) ホストネットワークマネージャからネットワークを作成</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ip アドレスから接続する場合などは必要</p>
+</li>
+<li>
+<p>ホストネットワークマネージャ は <code>メニュー &#8594; ファイル</code> の一覧の中とかにあるはず</p>
+</li>
+<li>
+<p>dhcp は使い方がよくわからんので使わない</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>vm 作成</p>
+<div class="ulist">
+<ul>
+<li>
+<p>先に設定が必要なので起動はしない</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>vm 設定</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(任意) 対象 vm からの設定で、クリップボード共有とドラッグアンドドロップを双方向で有効化</p>
+</li>
+<li>
+<p>(任意) 共有フォルダ設定で自動マウントをチェック</p>
+</li>
+<li>
+<p>(任意) ネットワークのアダプター2にホストオンリーアダプターを指定</p>
+<div class="ulist">
+<ul>
+<li>
+<p>名前 には最初に作成したネットワークを指定する</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ストレージの IDE に対象の iso を指定</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>vm 起動</p>
+</li>
+<li>
+<p>システム初期化</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sudo apt update &amp;&amp; sudo apt upgrade -y &amp;&amp; sudo apt install gcc make -y</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>gcc と make はゲストエディションの実行に必要</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>(任意) ssh 設定</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sudo apt install openssh-server -y</code></p>
+</li>
+<li>
+<p><code>vi /etc/ssh/sshd_config</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>PasswordAuthentication を yes に変更</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>sudo systemctl enable ssh &amp;&amp; sudo systemctl restart ssh</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ゲストエディションの設定</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ゲストエディションを挿入</p>
+</li>
+<li>
+<p>ゲストエディションのマウントディレクトリから <code>sudo sh autorun.sh</code></p>
+</li>
+<li>
+<p><code>sudo gpasswd --add {ユーザ名} vboxsf</code></p>
+</li>
+<li>
+<p><code>sudo reboot</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ネットワークの設定</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(任意) ubuntu の <code>設定 &#8594; ネットワーク</code> にある Ethernet (該当 MAC アドレス)の接続設定にて ipv4 に固定 ip を指定する</p>
+<div class="ulist">
+<ul>
+<li>
+<p>アドレス: 192.168.xxx.101</p>
+<div class="ulist">
+<ul>
+<li>
+<p>第３オクテットは最初に作成したホストネットワークマネージャのネットワークにあわせる</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ネットマスク: 255.255.255.0</p>
+</li>
+<li>
+<p>ゲートウェイ: 0.0.0.0</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>sudo reboot</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_python">python</h2>
 <div class="sectionbody">
@@ -902,7 +1062,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-29 22:06:39 +0900
+Last updated 2020-08-30 14:35:03 +0900
 </div>
 </div>
 </body>
