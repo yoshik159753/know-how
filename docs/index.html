@@ -721,35 +721,46 @@ pyenv local 3.6.7</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash"># バックアップ時
-duplicity --allow-source-mismatch ${src dir} file:///${dest dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
-duplicity --dry-run --allow-source-mismatch ${src dir} file:///${dest dir}
+duplicity --allow-source-mismatch ${src_dir} file://${dest_dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+duplicity --dry-run --allow-source-mismatch ${src_dir} file://${dest_dir}
+# ex)
+duplicity --allow-source-mismatch /src/foo/bar file:///dest/foo/bar
 
 # リストア時
-duplicity file:///{src dir} ${dest dir} <i class="conum" data-value="3"></i><b>(3)</b>
+duplicity file://${src_dir} ${dest_dir} <i class="conum" data-value="3"></i><b>(3)</b>
+duplicity file://${src_dir} ${dest_dir} --file-to-restore ${target}
+# ex.1) `baz/foobar` がディレクトリの場合は、 `/dest/foo/bar` 直下に `baz/foobar` 直下のディレクトリやファイルを展開する
+duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar <i class="conum" data-value="4"></i><b>(4)</b>
+# ex.2) `baz/foobar` がファイルの場合は、 `/dest/foo/bar` としてファイルをリストアする
+duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar
 
 # バックアップのファイル一覧出力
-duplicity list-current-files &lt;url&gt; &gt; list.txt <i class="conum" data-value="4"></i><b>(4)</b>
+duplicity list-current-files &lt;url&gt; &gt; list.txt <i class="conum" data-value="5"></i><b>(5)</b>
 
 # 差分チェック(ちょっと時間かかる)
-duplicity verify file:///{src dir} ${target dir}</code></pre>
+duplicity verify file://{src_dir} ${target dir}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>${src dir} の配下がバックアップの対象となる(${src dir} 自体は対象外)</td>
+<td>${src_dir} の配下がバックアップの対象となる(${src_dir} 自体は対象外)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>${dest dir} 配下にバックアップファイルが生成される(${src dir} はコピーされない)。例えば <a href="file:///foo/bar" class="bare">file:///foo/bar</a> を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される</td>
+<td>${dest_dir} 配下にバックアップファイルが生成される(${src_dir} はコピーされない)。例えば <a href="file:///foo/bar" class="bare">file:///foo/bar</a> を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>${dest dir} はディレクトリがなかった場合は生成される(ディレクトリ指定がなければ直下にリストアされる)</td>
+<td>${dest_dir} はディレクトリがなかった場合は生成される(ディレクトリ指定がなければ直下にリストアされる)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>展開先と展開元のディレクトリ名やファイル名は一致させておいた方が無難(<code>/dest/foo/bar/foobar --file-to-restore baz/foobar</code> といった感じ)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>標準出力に出力されるだけなので必要に応じてリダイレクト</td>
 </tr>
 </table>
@@ -770,6 +781,33 @@ duplicity verify file:///{src dir} ${target dir}</code></pre>
 </td>
 <td class="hdlist2">
 <p>ディレクトリからディレクトリなど同一ファイルシステム間でバックアップする場合は警告終了となりバックアップできない。問題ない場合はこのオプションを付与する。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--exclude</code>
+</td>
+<td class="hdlist2">
+<p>バックアップの対象外を指定する。複数指定する場合は <code>--exclude aaa --exclude bbb</code> といった感じで指定する。</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">リストア時</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--file-to-restore</code>
+</td>
+<td class="hdlist2">
+<p>リストアするディレクトリ or ファイルを指定する。</p>
 </td>
 </tr>
 </table>
