@@ -21,7 +21,7 @@ duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar
 duplicity list-current-files <url> > list.txt # <5>
 
 # 差分チェック(ちょっと時間かかる)
-duplicity verify file://{src_dir} ${target dir}
+duplicity verify file://${src_dir} ${target dir}
 ----
 <1> ${src_dir} の配下がバックアップの対象となる(${src_dir} 自体は対象外)
 <2> ${dest_dir} 配下にバックアップファイルが生成される(${src_dir} はコピーされない)。例えば file:///foo/bar を指定した場合、 /foo/bar 配下にバックアップファイル(xxx.gpg) が生成される

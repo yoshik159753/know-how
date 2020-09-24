@@ -631,7 +631,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># 仮想環境を起動(抜けるときは exit or ctrl+D)
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 仮想環境を起動(抜けるときは exit or ctrl+D)
 pipenv shell
 
 # 仮想環境のパス
@@ -691,7 +691,7 @@ pipenv install -r ./requirements.txt</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># インストール可能なpythonのバージョン一覧確認
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># インストール可能なpythonのバージョン一覧確認
 pyenv install --list
 
 # バージョンを指定してpythonをインストール
@@ -720,7 +720,7 @@ pyenv local 3.6.7</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># バックアップ時
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># バックアップ時
 duplicity --allow-source-mismatch ${src_dir} file://${dest_dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
 duplicity --dry-run --allow-source-mismatch ${src_dir} file://${dest_dir}
 # ex)
@@ -738,7 +738,7 @@ duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar
 duplicity list-current-files &lt;url&gt; &gt; list.txt <i class="conum" data-value="5"></i><b>(5)</b>
 
 # 差分チェック(ちょっと時間かかる)
-duplicity verify file://{src_dir} ${target dir}</code></pre>
+duplicity verify file://${src_dir} ${target dir}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -824,7 +824,7 @@ duplicity verify file://{src_dir} ${target dir}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># ダンプ
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ダンプ
 mysqldump -h 127.0.0.1 -u user-name -p --single-transaction database-name &gt; dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
@@ -876,7 +876,7 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 <h3 id="_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">sudo apt update &amp;&amp; \
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo apt update &amp;&amp; \
 sudo apt upgrade -y &amp;&amp; \
 sudo apt install -y mysql-server mysql-client
 
@@ -909,7 +909,7 @@ EOS
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># 鍵の生成
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
 ssh-keygen -t ecdsa -b 256 -C "your-email@example.com" -f id_ecdsa
 ssh-keygen -t rsa -b 4096 -C "your-email@example.com" -f id_rsa
 
@@ -1017,7 +1017,7 @@ ssh-keyscan -H address &gt;&gt; known_hosts</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># 鍵の生成
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
 gpg --full-gen-key
 
 # 登録の確認
@@ -1047,7 +1047,7 @@ gpg --decrypt secret.txt.asc</code></pre>
 <div class="listingblock">
 <div class="title">鍵を使わず暗号化/復号化</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># 暗号化
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
 gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536 doc.txt
 # 復号化
 gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
@@ -1056,7 +1056,7 @@ gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
 <div class="listingblock">
 <div class="title">鍵のエクスポート/インポート</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># 公開鍵のエクスポート
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 公開鍵のエクスポート
 gpg --output public.key --armor --export user-id
 # 公開鍵のインポート
 gpg --import public.key
@@ -1100,8 +1100,11 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-08-30 14:35:03 +0900
+Last updated 2020-09-24 10:35:12 +0900
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>
