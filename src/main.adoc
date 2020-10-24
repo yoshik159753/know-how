@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/lxd.adoc[]
+
 include::./contents/virtualbox.adoc[]
 
 include::./contents/python.adoc[]

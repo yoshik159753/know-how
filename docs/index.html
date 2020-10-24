@@ -443,6 +443,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_lxd">LXD</a>
+<ul class="sectlevel2">
+<li><a href="#_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</a></li>
+</ul>
+</li>
 <li><a href="#_virtualbox">VirtualBox</a></li>
 <li><a href="#_python">python</a>
 <ul class="sectlevel2">
@@ -462,6 +467,116 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_lxd">LXD</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://gihyo.jp/admin/serial/01/ubuntu-recipe/0521?page=1">Ubuntu Weekly Recipe 第521回　入門システムコンテナマネージャーLXD 3.0</a></p>
+</li>
+<li>
+<p>ref. <a href="https://linuxcontainers.org/ja/lxd/getting-started-cli/">LXD はじめに - コマンドライン</a></p>
+</li>
+<li>
+<p>コンテナイメージ管理サイト</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cloud-images.ubuntu.com/releases/">Ubuntu Cloud Images (RELEASED)</a></p>
+</li>
+<li>
+<p><a href="https://uk.images.linuxcontainers.org/">Image server for LXC and LXD</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">基本的な使い方</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># コンテナの起動/停止/削除
+IMAGE=ubuntu:18.04
+lxc launch ${IMAGE} ${CONTAINER_NAME}
+lxc stop ${CONTAINER_NAME}
+lxc delete ${CONTAINER_NAME}
+
+# イメージの一覧
+lxc image list
+# コンテナの一覧
+lxc list
+# コンテナの情報
+lxc info ${CONTAINER_NAME}
+
+# コンテナ内でコマンド実行 (ex. bash)
+lxc exec ${CONTAINER_NAME} -- /bin/bash
+
+# コンテナ内とのファイルコピー
+lxc file pull ${CONTAINER_NAME}/${FULLPATH} ${PULLED_FILEPATH}
+lxc file push ${PUSHED_FILEPATH} ${CONTAINER_NAME}/${FULLPATH}
+
+# コンテナ名のリネーム
+lxc rename ${BEF} ${AFT}
+
+# スナップショット/リストア(info でスナップショットの一覧を確認可能)
+lxc snapshot ${CONTAINER_NAME} ${SNAPSHOT_NAME}
+lxc restore ${CONTAINER_NAME} ${SNAPSHOT_NAME}
+# 削除時はコンテナ名/スナップショット名
+lxc delte ${CONTAINER_NAME}/${SNAPSHOT_NAME}
+
+# ホストのディレクトリとコンテナのディレクトリをバインド
+CONTAINER_NAME=foobar
+DEVICE_NAME=${CONTAINER_NAME}_disk
+SRC_DIR=/home/ubuntu/src
+DEST_DIR=/home/ubuntu/dest
+lxc config device add ${CONTAINER_NAME} ${DEVICE_NAME} disk \
+  source=${SRC_DIR} \
+  path=${DEST_DIR}
+# ポートバインド？
+lxc config device add ${CONTAINER_NAME} ${DEVICE_NAME} proxy \
+  listen=tcp:0.0.0.0:80 \
+  connect=tcp:127.0.0.1:8000 \
+  bind=host
+# デバイスを削除
+lxc config device remove ${CONTAINER_NAME} ${DEVICE_NAME}
+# デバイスを確認
+lxc config device show ${CONTAINER_NAME}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">インストールからコンフィギュレーション</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># snap でインストール
+sudo apt update
+sudo apt install -y btrfs-progs
+sudo snap install lxd --channel=3.0/stable
+# ansible で configuration
+sudo apt install -y software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update &amp;&amp; sudo apt install -y ansible
+ansible localhost -m group -a "name=lxd state=present" --become
+sudo systemctl restart lxd
+ansible localhost -m user -a "name=vagrant groups=lxd append=yes state=present" --become
+# 起動
+lxd init</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">CONTAINER_NAME=container_name
+lxc file push ~/.ssh/id_rsa.pub ${CONTAINER_NAME}/tmp/id_rsa.pub
+lxc exec ${CONTAINER_NAME} -- sh -c 'cat /tmp/id_rsa.pub &gt;&gt; /home/ubuntu/.ssh/authorized_keys'
+
+# コンテナのフィンガープリントを登録
+ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_virtualbox">VirtualBox</h2>
 <div class="sectionbody">
@@ -1100,7 +1215,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-24 10:35:12 +0900
+Last updated 2020-10-24 11:41:13 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
