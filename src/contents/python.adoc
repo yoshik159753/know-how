@@ -35,6 +35,8 @@ pipenv sync --dev # <1>
 
 # requirements からのインストール
 pipenv install -r ./requirements.txt
+# requirements 用に出力
+pipenv lock -r > requirements.txt
 ----
 <1> --dev で開発環境向けにインストール
 
