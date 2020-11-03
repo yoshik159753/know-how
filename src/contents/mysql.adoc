@@ -21,6 +21,23 @@ mysqldump::
 `--single-transaction`::: InnoDB の場合にはアプリケーションをブロックすることなく、 START TRANSACTION が発行された時点のデータベースの一貫した状態をダンプする
 --
 
+=== 差分を見たいとき用に改行込みで整形してダンプ
+
+* ref. https://stackoverflow.com/questions/15750535/using-mysqldump-to-format-one-insert-per-line[using-mysqldump-to-format-one-insert-per-line]
+
+[source,bash]
+----
+mysqldump -h ${host} \
+          -u ${username} \
+          -p \
+          --single-transaction \
+          --opt \
+          --skip-dump-date \
+          ${databasename} \
+          | sed 's$VALUES ($VALUES\n($g' | sed 's$),($),\n($g' \
+          > dump.sql
+----
+
 === ubuntu でざっくり使える状態にするスクリプト
 
 [source,bash]

@@ -458,6 +458,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_duplicity_バックアップ">duplicity (バックアップ)</a></li>
 <li><a href="#_mysql">mysql</a>
 <ul class="sectlevel2">
+<li><a href="#_差分を見たいとき用に改行込みで整形してダンプ">差分を見たいとき用に改行込みで整形してダンプ</a></li>
 <li><a href="#_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</a></li>
 </ul>
 </li>
@@ -988,6 +989,29 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 </div>
 </dd>
 </dl>
+</div>
+<div class="sect2">
+<h3 id="_差分を見たいとき用に改行込みで整形してダンプ">差分を見たいとき用に改行込みで整形してダンプ</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://stackoverflow.com/questions/15750535/using-mysqldump-to-format-one-insert-per-line">using-mysqldump-to-format-one-insert-per-line</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqldump -h ${host} \
+          -u ${username} \
+          -p \
+          --single-transaction \
+          --opt \
+          --skip-dump-date \
+          ${databasename} \
+          | sed 's$VALUES ($VALUES\n($g' | sed 's$),($),\n($g' \
+          &gt; dump.sql</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</h3>
