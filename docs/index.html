@@ -446,6 +446,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_lxd">LXD</a>
 <ul class="sectlevel2">
 <li><a href="#_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</a></li>
+<li><a href="#_docker_を使えるように設定">docker を使えるように設定</a></li>
 </ul>
 </li>
 <li><a href="#_virtualbox">VirtualBox</a></li>
@@ -573,6 +574,17 @@ lxc exec ${CONTAINER_NAME} -- sh -c 'cat /tmp/id_rsa.pub &gt;&gt; /home/ubuntu/.
 
 # コンテナのフィンガープリントを登録
 ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_を使えるように設定">docker を使えるように設定</h3>
+<div class="paragraph">
+<p>ref. <a href="https://lxd.readthedocs.io/en/latest/">How can I run docker inside a LXD container?</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lxc config set ${container} security.nesting true</code></pre>
 </div>
 </div>
 </div>
