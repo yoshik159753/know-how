@@ -86,3 +86,12 @@ lxc exec ${CONTAINER_NAME} -- sh -c 'cat /tmp/id_rsa.pub >> /home/ubuntu/.ssh/au
 # コンテナのフィンガープリントを登録
 ssh-keyscan -H ${CONTAINER_IP} >> ~/.ssh/known_hosts
 ----
+
+=== docker を使えるように設定
+
+ref. https://lxd.readthedocs.io/en/latest/[How can I run docker inside a LXD container?]
+
+[source,bash]
+----
+lxc config set ${container} security.nesting true
+----
