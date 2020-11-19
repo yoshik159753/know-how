@@ -1,0 +1,83 @@
+=== git-submodule
+
+メインで clone 後に実施すること。
+
+[source,bash]
+----
+# サブモジュールを初期化
+git submodule init
+
+# サブモジュールのチェックアウト(更新？)
+git submodule update
+----
+
+`git clone --recursive ${url}` でまとめて clone することも可能。
+
+
+
+
+
+// # サブモジュールを追加
+// git submodule add https://github.com/chaconinc/DbConnector
+
+
+
+
+// duplicity --allow-source-mismatch ${src_dir} file://${dest_dir} # <1> <2>
+// duplicity --dry-run --allow-source-mismatch ${src_dir} file://${dest_dir}
+// # ex)
+// duplicity --allow-source-mismatch /src/foo/bar file:///dest/foo/bar
+
+// # リストア時
+// duplicity file://${src_dir} ${dest_dir} # <3>
+// duplicity file://${src_dir} ${dest_dir} --file-to-restore ${target}
+// # ex.1) `baz/foobar` がディレクトリの場合は、 `/dest/foo/bar` 直下に `baz/foobar` 直下のディレクトリやファイルを展開する
+// duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar # <4>
+// # ex.2) `baz/foobar` がファイルの場合は、 `/dest/foo/bar` としてファイルをリストアする
+// duplicity file:///src/foo/bar /dest/foo/bar --file-to-restore baz/foobar
+
+// # バックアップのファイル一覧出力
+// duplicity list-current-files <url> > list.txt # <5>
+
+// # 差分チェック(ちょっと時間かかる)
+// duplicity verify file://${src_dir} ${target dir}
+// ----
+
+
+
+
+// git nest した管理
+
+// ・子どもを追加する。
+
+// git submodule add https://github.com/chaconinc/DbConnector
+
+// .gitmodules に設定が記述される。
+// (.gitignore と似た感じの管理)
+
+// .gitmodules もバージョン管理の対象。
+
+// add した url とは別にプライベートで管理したい場合は git config submodule.DbConnector.url PRIVATE_URL 。
+
+// DbConnector は作業ディレクトリ内にあるサブディレクトリですが、Git はそれがサブモジュールであるとみなし、あなたがそのディレクトリにいない限りその中身を追跡することはありません。
+
+// git diff --cached --submodule
+
+// ・subの更新を取り込む
+
+// sub ディレクトリで git fetch and merge で ok
+
+// git diff --submodule
+
+// # 追従するブランチを指定(この場合は DbConnector の branch は stable に追従する)
+// git config -f .gitmodules submodule.DbConnector.branch stable
+
+// # git status で submodule のサマリーを表示する(1で有効/0で無効)
+// git config status.submodulesummary 1
+
+// git log -p で差分表示
+
+// # main をコミットする場合は --recurse-submodules を利用する
+// # sub のコミット忘れを防げる
+// git push --recurse-submodules=check
+// git push --recurse-submodules=on-demand
