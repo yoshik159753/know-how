@@ -443,6 +443,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_ansible">ansible</a>
+<ul class="sectlevel2">
+<li><a href="#_python_のバージョン競合対策">python のバージョン競合対策</a></li>
+<li><a href="#_ansible_vault">ansible-vault</a></li>
+<li><a href="#_プラクティスなディレクトリ構成">プラクティスなディレクトリ構成</a></li>
+</ul>
+</li>
 <li><a href="#_cpcopy">cp(copy)</a></li>
 <li><a href="#_vmstat">vmstat</a></li>
 <li><a href="#_redoc">redoc</a></li>
@@ -477,6 +484,95 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_ansible">ansible</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">adhoc に実行</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># IP 直指定
+# ref. https://dev.classmethod.jp/articles/ansible-without-inventory/
+ansible -i 127.0.0.1, all -m ping <i class="conum" data-value="1"></i><b>(1)</b>
+
+# inventory から指定
+ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg=debug!" <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>-i の値の末にカンマ(,)、またパターンとして all を付ける必要がある</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>host_name には inventory で定義されているホスト名を指定する</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">playbook で host 直指定</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
+ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
+
+# sample.yml
+# ---
+# - hosts:
+#     - 127.0.0.1
+#   become: yes
+#   tasks:
+#     - name: install
+#       apt:
+#         ...</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_python_のバージョン競合対策">python のバージョン競合対策</h3>
+<div class="paragraph">
+<p>対象サーバーに自前で python をインストールしていると動かないケースがある。
+そんなときは <code>-e "ansible_python_interpreter=/usr/bin/python3"</code> のようにオリジナルの python を指定する。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ansible_vault">ansible-vault</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
+ansible-vault encrypt --ask-vault-pass encrypt.txt
+# 復号化
+ansible-vault decrypt --ask-vault-pass encrypted.txt
+# 参照
+ansible-vault view --ask-vault-pass encrypted.txt
+# 編集
+ansible-vault edit --ask-vault-pass encrypted.txt</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_プラクティスなディレクトリ構成">プラクティスなディレクトリ構成</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p group_vars/
+mkdir -p host_vars/
+mkdir -p roles
+touch production
+touch staging
+touch group_vars/group1.yml
+touch group_vars/group2.yml
+touch host_vars/hostname1.yml
+touch host_vars/hostname2.yml
+touch site.yml
+touch webservers.yml
+touch dbservers.yml
+
+# role の生成 (roles 内で実行)
+ansible-galaxy init ${role_name}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_cpcopy">cp(copy)</h2>
 <div class="sectionbody">
@@ -1592,7 +1688,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-02 23:50:07 +0900
+Last updated 2020-12-03 23:48:05 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

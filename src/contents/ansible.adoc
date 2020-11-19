@@ -1,0 +1,71 @@
+== ansible
+
+[source,bash]
+.adhoc に実行
+----
+# IP 直指定
+# ref. https://dev.classmethod.jp/articles/ansible-without-inventory/
+ansible -i 127.0.0.1, all -m ping # <1>
+
+# inventory から指定
+ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg=debug!" # <2>
+----
+<1> -i の値の末にカンマ(,)、またパターンとして all を付ける必要がある
+<2> host_name には inventory で定義されているホスト名を指定する
+
+[source,bash]
+.playbook で host 直指定
+----
+# https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
+ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
+
+# sample.yml
+# ---
+# - hosts:
+#     - 127.0.0.1
+#   become: yes
+#   tasks:
+#     - name: install
+#       apt:
+#         ...
+----
+
+=== python のバージョン競合対策
+
+対象サーバーに自前で python をインストールしていると動かないケースがある。
+そんなときは `-e "ansible_python_interpreter=/usr/bin/python3"` のようにオリジナルの python を指定する。
+
+=== ansible-vault
+
+[source,bash]
+----
+# 暗号化
+ansible-vault encrypt --ask-vault-pass encrypt.txt
+# 復号化
+ansible-vault decrypt --ask-vault-pass encrypted.txt
+# 参照
+ansible-vault view --ask-vault-pass encrypted.txt
+# 編集
+ansible-vault edit --ask-vault-pass encrypted.txt
+----
+
+=== プラクティスなディレクトリ構成
+
+[source,bash]
+----
+mkdir -p group_vars/
+mkdir -p host_vars/
+mkdir -p roles
+touch production
+touch staging
+touch group_vars/group1.yml
+touch group_vars/group2.yml
+touch host_vars/hostname1.yml
+touch host_vars/hostname2.yml
+touch site.yml
+touch webservers.yml
+touch dbservers.yml
+
+# role の生成 (roles 内で実行)
+ansible-galaxy init ${role_name}
+----
