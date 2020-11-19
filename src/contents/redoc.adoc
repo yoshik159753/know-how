@@ -1,0 +1,10 @@
+== redoc
+
+[source,bash]
+----
+# install
+npm install -g redoc-cli
+
+# convert
+redoc-cli bundle ${SRC} -o ${DEST}
+----

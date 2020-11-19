@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_redoc">redoc</a></li>
 <li><a href="#_lxd">LXD</a>
 <ul class="sectlevel2">
 <li><a href="#_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</a></li>
@@ -469,6 +470,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_redoc">redoc</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># install
+npm install -g redoc-cli
+
+# convert
+redoc-cli bundle ${SRC} -o ${DEST}</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_lxd">LXD</h2>
 <div class="sectionbody">
@@ -1253,7 +1268,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-10-24 11:41:13 +0900
+Last updated 2020-11-19 23:33:36 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
