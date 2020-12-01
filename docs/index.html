@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_cpcopy">cp(copy)</a></li>
 <li><a href="#_vmstat">vmstat</a></li>
 <li><a href="#_redoc">redoc</a></li>
 <li><a href="#_lxd">LXD</a>
@@ -471,6 +472,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_cpcopy">cp(copy)</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp -rTv ${SRC_DIR} ${DEST_DIR}</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>r</code>
+</td>
+<td class="hdlist2">
+<p>再帰的に処理</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-T</code>
+</td>
+<td class="hdlist2">
+<p>srcの中身をdistのディレクトリに展開する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>v</code>
+</td>
+<td class="hdlist2">
+<p>コピーする内容をコンソールに表示する</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_vmstat">vmstat</h2>
 <div class="sectionbody">
@@ -1481,7 +1520,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-11-19 23:35:56 +0900
+Last updated 2020-12-01 23:10:21 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

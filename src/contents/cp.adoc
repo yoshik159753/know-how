@@ -1,0 +1,11 @@
+== cp(copy)
+
+[source,bash]
+----
+cp -rTv ${SRC_DIR} ${DEST_DIR}
+----
+
+[horizontal]
+`r`:: 再帰的に処理
+`-T`:: srcの中身をdistのディレクトリに展開する
+`v`:: コピーする内容をコンソールに表示する
