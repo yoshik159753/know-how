@@ -3,7 +3,7 @@
 [source,bash]
 ----
 # ダンプ
-mysqldump -h 127.0.0.1 -u user-name -p --single-transaction database-name > dump.sql
+mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name > dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name < dump.sql
 ----
@@ -19,6 +19,8 @@ mysqldump::
 --
 [horizontal]
 `--single-transaction`::: InnoDB の場合にはアプリケーションをブロックすることなく、 START TRANSACTION が発行された時点のデータベースの一貫した状態をダンプする
+`--ignore-table`::: `database.table` で無視するテーブルを指定する。複数指定する場合は `--ignore-table xxx --ignore-table xxx --ignore-table xxx` のようにつなげる。
+`--no-tablespaces`::: ？？？。よくわからんけど、これをつけるとあるエラーを抑止できる。
 --
 
 === 差分を見たいとき用に改行込みで整形してダンプ
@@ -33,6 +35,10 @@ mysqldump -h ${host} \
           --single-transaction \
           --opt \
           --skip-dump-date \
+          --ignore-table ${database_table} \
+          --ignore-table ${database_table} \
+          --ignore-table ${database_table} \
+          --no-tablespaces \
           ${databasename} \
           | sed 's$VALUES ($VALUES\n($g' | sed 's$),($),\n($g' \
           > dump.sql

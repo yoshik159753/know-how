@@ -1222,7 +1222,7 @@ duplicity verify file://${src_dir} ${target dir}</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ダンプ
-mysqldump -h 127.0.0.1 -u user-name -p --single-transaction database-name &gt; dump.sql
+mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name &gt; dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 </div>
@@ -1262,6 +1262,22 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 <p>InnoDB の場合にはアプリケーションをブロックすることなく、 START TRANSACTION が発行された時点のデータベースの一貫した状態をダンプする</p>
 </td>
 </tr>
+<tr>
+<td class="hdlist1">
+<code>--ignore-table</code>
+</td>
+<td class="hdlist2">
+<p><code>database.table</code> で無視するテーブルを指定する。複数指定する場合は <code>--ignore-table xxx --ignore-table xxx --ignore-table xxx</code> のようにつなげる。</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--no-tablespaces</code>
+</td>
+<td class="hdlist2">
+<p>？？？。よくわからんけど、これをつけるとあるエラーを抑止できる。</p>
+</td>
+</tr>
 </table>
 </div>
 </div>
@@ -1286,6 +1302,10 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
           --single-transaction \
           --opt \
           --skip-dump-date \
+          --ignore-table ${database_table} \
+          --ignore-table ${database_table} \
+          --ignore-table ${database_table} \
+          --no-tablespaces \
           ${databasename} \
           | sed 's$VALUES ($VALUES\n($g' | sed 's$),($),\n($g' \
           &gt; dump.sql</code></pre>
