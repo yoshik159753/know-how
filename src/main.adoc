@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/vmstat.adoc[]
+
 include::./contents/redoc.adoc[]
 
 include::./contents/lxd.adoc[]
