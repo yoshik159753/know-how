@@ -20,6 +20,8 @@ include::./contents/duplicity.adoc[]
 
 include::./contents/mysql.adoc[]
 
+include::./contents/psql.adoc[]
+
 include::./contents/ssh.adoc[]
 
 include::./contents/gpg.adoc[]

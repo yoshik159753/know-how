@@ -466,6 +466,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</a></li>
 </ul>
 </li>
+<li><a href="#_psql">psql</a>
+<ul class="sectlevel2">
+<li><a href="#_select_結果をファイル出力">select 結果をファイル出力</a></li>
+</ul>
+</li>
 <li><a href="#_ssh">ssh</a></li>
 <li><a href="#_gpg">gpg</a></li>
 </ul>
@@ -1338,6 +1343,53 @@ EOS
 </div>
 </div>
 <div class="sect1">
+<h2 id="_psql">psql</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ref. <a href="https://qiita.com/rice_american/items/ceae28dad13c3977e3a8">PostgreSQLのbackup, restore方法まとめ</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 接続
+psql -h ${host} -p ${port} -U ${user} -d ${database}
+
+# バックアップ
+pg_dump -h ${host} -p ${port} -U ${user} ${database_name} &gt; backup_file_name
+# リストア
+psql ${database_name} &lt; backup_file_name</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_select_結果をファイル出力">select 結果をファイル出力</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">psql ${database_name} -c '${sql};' -A -F $'\t' &gt; output.txt</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-A</code>
+</td>
+<td class="hdlist2">
+<p>桁そろえをしない</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-F</code>
+</td>
+<td class="hdlist2">
+<p>タブ区切り</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_ssh">ssh</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -1540,7 +1592,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-01 23:10:21 +0900
+Last updated 2020-12-02 23:50:07 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

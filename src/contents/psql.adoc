@@ -1,0 +1,24 @@
+== psql
+
+ref. https://qiita.com/rice_american/items/ceae28dad13c3977e3a8[PostgreSQLのbackup, restore方法まとめ]
+
+[source,bash]
+----
+# 接続
+psql -h ${host} -p ${port} -U ${user} -d ${database}
+
+# バックアップ
+pg_dump -h ${host} -p ${port} -U ${user} ${database_name} > backup_file_name
+# リストア
+psql ${database_name} < backup_file_name
+----
+
+=== select 結果をファイル出力
+
+``` bash
+psql ${database_name} -c '${sql};' -A -F $'\t' > output.txt
+```
+
+[horizontal]
+`-A`:: 桁そろえをしない
+`-F`:: タブ区切り
