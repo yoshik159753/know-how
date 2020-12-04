@@ -443,6 +443,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_docker">docker</a>
+<ul class="sectlevel2">
+<li><a href="#_docker_compose">docker compose</a></li>
+<li><a href="#_docker_registry">docker registry</a></li>
+</ul>
+</li>
 <li><a href="#_ansible">ansible</a>
 <ul class="sectlevel2">
 <li><a href="#_python_のバージョン競合対策">python のバージョン競合対策</a></li>
@@ -484,6 +490,70 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_docker">docker</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">docker で不要 images などの削除</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
+docker system prune -f
+
+# 個別に削除したい場合は以下のようにすればOK
+docker container prune -f
+docker volume prune -f
+docker network prune -f
+docker image prune -f</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_compose">docker compose</h3>
+<div class="listingblock">
+<div class="title">滅びの呪文</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://qiita.com/suin/items/19d65e191b96a0079417
+docker-compose down --rmi all --volumes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_registry">docker registry</h3>
+<div class="paragraph">
+<p>ref. <a href="https://qiita.com/zknzfz/items/13d5d07ab5bb0feb1fd1">privateなdockerレジストリを構築する</a>
+ref. <a href="https://docs.docker.com/registry/spec/auth/token/">Token Authentication Specification</a></p>
+</div>
+<div class="listingblock">
+<div class="title">image の一覧取得</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 下記とかで www-authenticate からトークン取得用のurl, service, scopeなどを確認
+curl https://example.com/v2/_catalog -v
+
+# トークン取得準備
+DOCKER_REG_LOGIN_USERNAME=user
+DOCKER_REG_LOGIN_PASSWORD=pass
+DOCKER_AUTH_BASE_URL=https://auth.example/token
+
+# 一覧取得
+DOCKER_SERVICE=('example.com')
+DOCKER_SCOPE=('registry:catalog:*')
+curl -u ${DOCKER_REG_LOGIN_USERNAME}:${DOCKER_REG_LOGIN_PASSWORD} "${DOCKER_AUTH_BASE_URL}/?service=${DOCKER_SERVICE}&amp;scope=${DOCKER_SCOPE}"
+
+DOCKER_ACCESS_TOKEN=tokentokentoken
+curl -H "Authorization: Bearer ${DOCKER_ACCESS_TOKEN}" https://example.com/v2/_catalog | jq .
+
+# イメージのタグ一覧
+DOCKER_SERVICE=('example.com')
+DOCKER_SCOPE=('repository:example/image:pull')
+curl -u ${DOCKER_REG_LOGIN_USERNAME}:${DOCKER_REG_LOGIN_PASSWORD} "${DOCKER_AUTH_BASE_URL}/?service=${DOCKER_SERVICE}&amp;scope=${DOCKER_SCOPE}"
+
+DOCKER_ACCESS_TOKEN=tokentokentoken
+DOCKER_IMAGE_REPO_MNG=example/image
+curl -H "Authorization: Bearer ${DOCKER_ACCESS_TOKEN}" https://example.com/v2/${DOCKER_IMAGE_REPO_MNG}/tags/list | jq .</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_ansible">ansible</h2>
 <div class="sectionbody">
@@ -1688,7 +1758,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-03 23:48:05 +0900
+Last updated 2020-12-04 23:16:30 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
