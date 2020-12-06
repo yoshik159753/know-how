@@ -1684,6 +1684,44 @@ ssh-keyscan -H address &gt;&gt; known_hosts</code></pre>
 </dd>
 </dl>
 </div>
+<div class="listingblock">
+<div class="title">pem 形式で生成</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+ssh-keygen -t rsa -b 4096 -m pem -f ${output}
+
+# 公開鍵は pem 形式で生成されないので pem 形式に変換
+ssh-keygen -e -m pem -f ${input}.pub &gt; ${output}.pub.pem</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-m</code>
+</td>
+<td class="hdlist2">
+<p>形式の指定(RFC4716, PKCS98, pem)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-f</code>
+</td>
+<td class="hdlist2">
+<p>入出力のファイル指定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-e</code>
+</td>
+<td class="hdlist2">
+<p>OpenSSH 形式の秘密鍵ファイルまたは公開鍵ファイルを読み出しを指定</p>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">

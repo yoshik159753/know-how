@@ -41,3 +41,18 @@ ssh-keyscan -H address >> known_hosts
 [horizontal]
 `-H`::: リモートホストの情報をハッシュ化
 --
+
+[source,bash]
+.pem 形式で生成
+----
+# 鍵の生成
+ssh-keygen -t rsa -b 4096 -m pem -f ${output}
+
+# 公開鍵は pem 形式で生成されないので pem 形式に変換
+ssh-keygen -e -m pem -f ${input}.pub > ${output}.pub.pem
+----
+
+[horizontal]
+`-m`:: 形式の指定(RFC4716, PKCS98, pem)
+`-f`:: 入出力のファイル指定
+`-e`:: OpenSSH 形式の秘密鍵ファイルまたは公開鍵ファイルを読み出しを指定
