@@ -69,3 +69,16 @@ pyenv global 3.6.7
 # 特定のディレクトリ内でのバージョンを指定する
 pyenv local 3.6.7
 ----
+
+=== その他
+
+gunicorn と uvicorn の連携::
++
+--
+ref. https://ohshige.hatenablog.com/entry/2019/02/18/190000[ResponderをUvicornやGunicornでデプロイする方法]
+
+[source,bash]
+----
+gunicorn -k uvicorn.workers.UvicornWorker app:api
+----
+--

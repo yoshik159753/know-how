@@ -470,6 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_pipenv">pipenv</a></li>
 <li><a href="#_pyenv">pyenv</a></li>
+<li><a href="#_その他">その他</a></li>
 </ul>
 </li>
 <li><a href="#_duplicity_バックアップ">duplicity (バックアップ)</a></li>
@@ -1277,6 +1278,28 @@ pyenv global 3.6.7
 # 特定のディレクトリ内でのバージョンを指定する
 pyenv local 3.6.7</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_その他">その他</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">gunicorn と uvicorn の連携</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>ref. <a href="https://ohshige.hatenablog.com/entry/2019/02/18/190000">ResponderをUvicornやGunicornでデプロイする方法</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gunicorn -k uvicorn.workers.UvicornWorker app:api</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
