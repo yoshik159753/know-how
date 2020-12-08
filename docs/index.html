@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_uuidgen">uuidgen</a></li>
 <li><a href="#_hexdump">hexdump</a></li>
 <li><a href="#_md5">md5</a></li>
 <li><a href="#_docker">docker</a>
@@ -493,6 +494,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_uuidgen">uuidgen</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># uuid v4 を生成
+uuidgen
+# もしくは
+cat /proc/sys/kernel/random/uuid
+
+# 100個出力
+for i in {1..100} ; do uuidgen; done</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_hexdump">hexdump</h2>
 <div class="sectionbody">
@@ -1843,7 +1860,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-08 23:17:14 +0900
+Last updated 2020-12-08 23:20:44 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
