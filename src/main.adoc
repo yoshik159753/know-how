@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/sql.adoc[]
+
 include::./contents/uuidgen.adoc[]
 
 include::./contents/hexdump.adoc[]
