@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/git.adoc[]
+
 include::./contents/curl.adoc[]
 
 include::./contents/sql.adoc[]

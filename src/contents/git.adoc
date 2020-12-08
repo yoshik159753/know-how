@@ -1,0 +1,9 @@
+== git
+
+=== git author の上書き
+
+[source,bash]
+----
+# 文字列で username と email を指定する
+git commit --amend --author="username <user@example.com>"
+----
