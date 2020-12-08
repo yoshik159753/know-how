@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/hexdump.adoc[]
+
 include::./contents/md5.adoc[]
 
 include::./contents/docker.adoc[]
