@@ -1,0 +1,23 @@
+== curl
+
+[source,bash]
+----
+curl --show-error \
+     --silent \
+     --request GET \
+     --insecure
+     --include \
+     --header "Authorization: Bearer ${token}" \
+     ${url}
+----
+
+[source,bash]
+.bash の変数展開を使った例
+----
+H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
+H_ACCEPT=(-H 'application/json')
+H_AUTH=(-H 'Authorization: Bearer token')
+DATA=(-d '{"foo":"1", "bar":"baz"}')
+URL=http://example.com
+curl -Ss -X POST -i "${H_CTYPE[@]}" "${H_ACCEPT[@]}" "${H_AUTH[@]}" "${DATA[@]}" "${URL}"
+----

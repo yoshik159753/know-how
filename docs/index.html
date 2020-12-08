@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_curl">curl</a></li>
 <li><a href="#_sql">sql</a></li>
 <li><a href="#_uuidgen">uuidgen</a></li>
 <li><a href="#_hexdump">hexdump</a></li>
@@ -495,6 +496,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_curl">curl</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl --show-error \
+     --silent \
+     --request GET \
+     --insecure
+     --include \
+     --header "Authorization: Bearer ${token}" \
+     ${url}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">bash の変数展開を使った例</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
+H_ACCEPT=(-H 'application/json')
+H_AUTH=(-H 'Authorization: Bearer token')
+DATA=(-d '{"foo":"1", "bar":"baz"}')
+URL=http://example.com
+curl -Ss -X POST -i "${H_CTYPE[@]}" "${H_ACCEPT[@]}" "${H_AUTH[@]}" "${DATA[@]}" "${URL}"</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_sql">sql</h2>
 <div class="sectionbody">
@@ -1873,7 +1901,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-08 23:23:49 +0900
+Last updated 2020-12-08 23:32:55 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
