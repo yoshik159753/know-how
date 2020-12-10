@@ -1,0 +1,10 @@
+== vagrant
+
+[source,bash]
+----
+# snapshot
+vagrant snapshot list
+vagrant snapshot save ${snapshot_name}
+vagrant snapshot restore ${snapshot_name}
+vagrant snapshot delete ${snapshot_name}
+----

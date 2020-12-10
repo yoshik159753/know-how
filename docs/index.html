@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_vagrant">vagrant</a></li>
 <li><a href="#_dd">dd</a></li>
 <li><a href="#_factor">factor</a></li>
 <li><a href="#_git">git</a>
@@ -503,6 +504,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_vagrant">vagrant</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># snapshot
+vagrant snapshot list
+vagrant snapshot save ${snapshot_name}
+vagrant snapshot restore ${snapshot_name}
+vagrant snapshot delete ${snapshot_name}</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_dd">dd</h2>
 <div class="sectionbody">
@@ -1953,7 +1968,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-10 23:43:30 +0900
+Last updated 2020-12-10 23:47:03 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
