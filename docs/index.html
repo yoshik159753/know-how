@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_urand">urand</a></li>
 <li><a href="#_vagrant">vagrant</a></li>
 <li><a href="#_dd">dd</a></li>
 <li><a href="#_factor">factor</a></li>
@@ -504,6 +505,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_urand">urand</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">ランダム文字列</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># token68対応版
+# fold で文字数、 head で生成数
+cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 32 | head -n 32 | uniq</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ダミーファイル生成</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 改行なしで 200MB のダミーファイル(開くとツライ)
+head -c 200m /dev/urandom &gt; test.txt
+# ref. https://kazmax.zpp.jp/linux/random_file.html#ah_3
+
+# 1行1kB(改行込み)
+# head 1k で 1MB
+cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 1023 | head -n 1k &gt; dmy.txt</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_vagrant">vagrant</h2>
 <div class="sectionbody">
@@ -1968,7 +1994,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-10 23:47:03 +0900
+Last updated 2020-12-10 23:56:46 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
