@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_factor">factor</a></li>
 <li><a href="#_git">git</a>
 <ul class="sectlevel2">
 <li><a href="#_git_author_の上書き">git author の上書き</a></li>
@@ -501,6 +502,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_factor">factor</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">素数出力</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://www.mtioutput.com/entry/factor-number-list
+BEGIN=2
+END=1000
+seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_git">git</h2>
 <div class="sectionbody">
@@ -1920,7 +1935,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-08 23:36:13 +0900
+Last updated 2020-12-10 23:38:40 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
