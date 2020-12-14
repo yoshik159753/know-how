@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_tree">tree</a></li>
 <li><a href="#_dig">dig</a></li>
 <li><a href="#_urand">urand</a></li>
 <li><a href="#_vagrant">vagrant</a></li>
@@ -506,6 +507,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_tree">tree</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tree -L 4 --charset unicode</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-L</code>
+</td>
+<td class="hdlist2">
+<p>階層の指定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-d</code>
+</td>
+<td class="hdlist2">
+<p>ディレクトリオンリー</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-I</code>
+</td>
+<td class="hdlist2">
+<p>対象を除外。 “xxx|yyy|zzz” で複数指定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--charset</code>
+</td>
+<td class="hdlist2">
+<p>charset の指定</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_dig">dig</h2>
 <div class="sectionbody">
@@ -2008,7 +2055,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-14 16:30:41 +0900
+Last updated 2020-12-14 16:33:18 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
