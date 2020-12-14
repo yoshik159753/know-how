@@ -1410,6 +1410,16 @@ lxc restore ${CONTAINER_NAME} ${SNAPSHOT_NAME}
 # 削除時はコンテナ名/スナップショット名
 lxc delte ${CONTAINER_NAME}/${SNAPSHOT_NAME}
 
+# コンテナイメージの作成
+# (alias をつけなかった場合はフィンガープリントでイメージを指定しなくてはなりません)
+lxc publish ${CONTAINER_NAME} --alias ${ALIAS}
+# コンテナイメージの作成(スナップショットから)
+lxc publish ${CONTAINER_NAME}/${SNAPSHOT_NAME} --alias ${ALIAS}
+# コンテナイメージからコンテナ起動
+lxc launch ${ALIAS} ${NEW_CONTAINER_NAME}
+# コンテナのアーカイブを取得(${OUTPUT}.tar.gz ができる)
+lxc image export ${ALIAS} ${OUTPUT}
+
 # ホストのディレクトリとコンテナのディレクトリをバインド
 CONTAINER_NAME=foobar
 DEVICE_NAME=${CONTAINER_NAME}_disk
