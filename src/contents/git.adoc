@@ -7,3 +7,18 @@
 # 文字列で username と email を指定する
 git commit --amend --author="username <user@example.com>"
 ----
+
+=== 差分のあるファイルを抽出してコピー
+
+[source,bash]
+----
+DEST=pickup && mkdir ${DEST}
+git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
+if [ -e "${filepath}" ]; then \
+  echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
+  cp -r --parents "${filepath}" "${DEST}"; \
+else \
+  echo "[IGNORE] ${filepath}"; \
+fi \
+done
+----

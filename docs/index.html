@@ -455,6 +455,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_git">git</a>
 <ul class="sectlevel2">
 <li><a href="#_git_author_の上書き">git author の上書き</a></li>
+<li><a href="#_差分のあるファイルを抽出してコピー">差分のあるファイルを抽出してコピー</a></li>
 </ul>
 </li>
 <li><a href="#_curl">curl</a></li>
@@ -811,6 +812,22 @@ seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 文字列で username と email を指定する
 git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_差分のあるファイルを抽出してコピー">差分のあるファイルを抽出してコピー</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DEST=pickup &amp;&amp; mkdir ${DEST}
+git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
+if [ -e "${filepath}" ]; then \
+  echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
+  cp -r --parents "${filepath}" "${DEST}"; \
+else \
+  echo "[IGNORE] ${filepath}"; \
+fi \
+done</code></pre>
 </div>
 </div>
 </div>
