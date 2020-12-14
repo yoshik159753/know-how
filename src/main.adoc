@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/tar.adoc[]
+
 include::./contents/tree.adoc[]
 
 include::./contents/dig.adoc[]

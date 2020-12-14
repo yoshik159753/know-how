@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_tar">tar</a></li>
 <li><a href="#_tree">tree</a></li>
 <li><a href="#_dig">dig</a></li>
 <li><a href="#_urand">urand</a></li>
@@ -507,6 +508,54 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_tar">tar</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>圧縮</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># tar.gz
+tar -cvzf ${DEST}.tar.gz ${SRC}
+tar -cvzf ${DEST}.tgz ${SRC}
+# tar.Z
+tar -cvZf ${DEST}.tar.Z ${SRC}
+tar -cvZf ${DEST}.taZ ${SRC}
+# tar.bz2
+tar -cvjf ${DEST}.tar.bz2 ${SRC}
+tar -cvjf ${DEST}.tbz2 ${SRC}
+# tar.xz
+tar -cvJf ${DEST}.tar.xz ${SRC}
+# tar
+tar -cvf ${DEST}.tar ${SRC}
+# zip
+zip -r ${DEST}.zip ${SRC}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>展開</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 自動認識
+tar -xvf ${SRC}.tar.gz
+# tar.gz
+tar -xvzf ${SRC}.tar.gz
+# tar.Z
+tar -xvZf ${SRC}.tar.Z
+# tar.bz2
+tar -xvjf ${SRC}.tar.bz2
+# tar.xz
+tar -xvJf ${SRC}.tar.xz
+# tar
+tar -xvf ${SRC}.tar
+# zip
+unzip ${SRC}.zip</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_tree">tree</h2>
 <div class="sectionbody">
@@ -2055,7 +2104,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-14 16:33:18 +0900
+Last updated 2020-12-14 16:39:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

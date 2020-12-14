@@ -1,0 +1,42 @@
+== tar
+
+圧縮
+
+[source,bash]
+----
+# tar.gz
+tar -cvzf ${DEST}.tar.gz ${SRC}
+tar -cvzf ${DEST}.tgz ${SRC}
+# tar.Z
+tar -cvZf ${DEST}.tar.Z ${SRC}
+tar -cvZf ${DEST}.taZ ${SRC}
+# tar.bz2
+tar -cvjf ${DEST}.tar.bz2 ${SRC}
+tar -cvjf ${DEST}.tbz2 ${SRC}
+# tar.xz
+tar -cvJf ${DEST}.tar.xz ${SRC}
+# tar
+tar -cvf ${DEST}.tar ${SRC}
+# zip
+zip -r ${DEST}.zip ${SRC}
+----
+
+展開
+
+[source,bash]
+----
+# 自動認識
+tar -xvf ${SRC}.tar.gz
+# tar.gz
+tar -xvzf ${SRC}.tar.gz
+# tar.Z
+tar -xvZf ${SRC}.tar.Z
+# tar.bz2
+tar -xvjf ${SRC}.tar.bz2
+# tar.xz
+tar -xvJf ${SRC}.tar.xz
+# tar
+tar -xvf ${SRC}.tar
+# zip
+unzip ${SRC}.zip
+----
