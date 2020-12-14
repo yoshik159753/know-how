@@ -1,0 +1,33 @@
+== for
+
+[source,bash]
+.loop でぐるぐるスクリプト
+----
+#!/bin/bash
+high=(aaa bbb ccc)
+middle=(iii jjj kkk)
+low=(xxx yyy zzz)
+for i in ${high[@]};
+do
+  for j in ${middle[@]};
+  do
+    for k in ${low[@]};
+    do
+      name=${i}_${j}_${k}
+      echo ${name}
+      mkdir ${name}
+      json=$(cat << EOS
+{
+  "high": "${i}",
+  "middle": "${j}",
+  "low": "${k}"
+}
+EOS
+)
+      echo ${json} > ${name}/${name}.json
+      zip -r ${name}.zip ${name}
+      rm -rf ${name}
+    done
+  done
+done
+----

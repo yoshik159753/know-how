@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_for">for</a></li>
 <li><a href="#_rsync">rsync</a></li>
 <li><a href="#_tar">tar</a></li>
 <li><a href="#_tree">tree</a></li>
@@ -509,6 +510,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_for">for</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">loop でぐるぐるスクリプト</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+high=(aaa bbb ccc)
+middle=(iii jjj kkk)
+low=(xxx yyy zzz)
+for i in ${high[@]};
+do
+  for j in ${middle[@]};
+  do
+    for k in ${low[@]};
+    do
+      name=${i}_${j}_${k}
+      echo ${name}
+      mkdir ${name}
+      json=$(cat &lt;&lt; EOS
+{
+  "high": "${i}",
+  "middle": "${j}",
+  "low": "${k}"
+}
+EOS
+)
+      echo ${json} &gt; ${name}/${name}.json
+      zip -r ${name}.zip ${name}
+      rm -rf ${name}
+    done
+  done
+done</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_rsync">rsync</h2>
 <div class="sectionbody">
@@ -2183,7 +2221,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-14 16:52:30 +0900
+Last updated 2020-12-14 17:03:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
