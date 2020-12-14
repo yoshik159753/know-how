@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/dig.adoc[]
+
 include::./contents/urand.adoc[]
 
 include::./contents/vagrant.adoc[]
