@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_rsync">rsync</a></li>
 <li><a href="#_tar">tar</a></li>
 <li><a href="#_tree">tree</a></li>
 <li><a href="#_dig">dig</a></li>
@@ -508,6 +509,84 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_rsync">rsync</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rsync --verbose --recursive --inplace --delete --force --compress --times --rsh='ssh -p {SSH_PORT} -i {SSH_SECRET_KEY_PATH}' {SOURCE} {DESTINATION_HOST}:{DESTINATION_PATH}</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--verbose</code>
+</td>
+<td class="hdlist2">
+<p>動作内容を表示する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--recursive</code>
+</td>
+<td class="hdlist2">
+<p>ディレクトリを再帰的に処理する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--inplace</code>
+</td>
+<td class="hdlist2">
+<p>ファイルを上書きする</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--delete</code>
+</td>
+<td class="hdlist2">
+<p>同期元にないファイルを同期先から削除する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--force</code>
+</td>
+<td class="hdlist2">
+<p>ディレクトリが空ではない場合も削除する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--compress</code>
+</td>
+<td class="hdlist2">
+<p>転送中のデータを圧縮する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--times</code>
+</td>
+<td class="hdlist2">
+<p>タイムスタンプを保持する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--rsh</code>
+</td>
+<td class="hdlist2">
+<p>rsh の代替を指定</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_tar">tar</h2>
 <div class="sectionbody">
@@ -2104,7 +2183,7 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-14 16:39:10 +0900
+Last updated 2020-12-14 16:52:30 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
