@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.12">
 <title>*nix tips</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -47,7 +47,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -62,10 +62,8 @@ img{-ms-interpolation-mode:bicubic}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
-.center{margin-left:auto;margin-right:auto}
-.stretch{width:100%}
 .subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
-div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
 a{color:#2156a5;text-decoration:underline;line-height:inherit}
 a:hover,a:focus{color:#1d4b8f}
 a img{border:0}
@@ -105,19 +103,22 @@ h1{font-size:2.75em}
 h2{font-size:2.3125em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
 h4{font-size:1.4375em}}
-table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede;word-wrap:normal}
 table thead,table tfoot{background:#f7f8f7}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt{background:#f8f8f7}
-table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
 .clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
 .clearfix::after,.float-group::after{clear:both}
-:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-:not(pre)>code.nobreak{word-wrap:normal}
-:not(pre)>code.nowrap{white-space:nowrap}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
 pre>code{display:block}
@@ -182,7 +183,7 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
 #footer-text{color:rgba(255,255,255,.8);line-height:1.44}
 #content{margin-bottom:.625em}
 .sect1{padding-bottom:.625em}
@@ -205,7 +206,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
 .exampleblock>.content>:first-child{margin-top:0}
@@ -215,7 +216,7 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
@@ -261,21 +262,20 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
-table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
 td.tableblock>.content>:last-child{margin-bottom:-1.25em}
-td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
 table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
 table.frame-sides{border-width:0 1px}
-table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
 table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
@@ -284,7 +284,7 @@ th.valign-top,td.valign-top{vertical-align:top}
 th.valign-bottom,td.valign-bottom{vertical-align:bottom}
 th.valign-middle,td.valign-middle{vertical-align:middle}
 table thead th,table tfoot th{font-weight:bold}
-tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th{background:#f7f8f7}
 tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
 p.tableblock>code:only-child{background:none;padding:0}
 p.tableblock{font-size:1em}
@@ -313,6 +313,7 @@ ol.lowergreek{list-style-type:lower-greek}
 .hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
 .colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
 .colist td:not([class]):first-child img{max-width:none}
@@ -385,7 +386,7 @@ a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
 .admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
 .admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:50%;border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
 .conum[data-value] *{color:#fff!important}
 .conum[data-value]+b{display:none}
 .conum[data-value]::after{content:attr(data-value)}
@@ -412,6 +413,7 @@ thead{display:table-header-group}
 svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
 #toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
@@ -436,6 +438,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -443,6 +446,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_terraform">terraform</a></li>
 <li><a href="#_openssl">openssl</a></li>
 <li><a href="#_for">for</a></li>
 <li><a href="#_rsync">rsync</a></li>
@@ -513,12 +517,69 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_terraform">terraform</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># aws コマンドラインの設定
+aws configure
+
+# フォーマット
+terraform fmt
+# 検証
+terraform validate
+
+# 計画確認
+terraform plan
+# 実行
+terraform apply
+# 破棄
+terraform destroy
+
+# 状態ファイルの表示
+terraform show
+# 状態ファイルのリソースの一覧
+terraform state list
+
+# 手動で taint フラグを立てる
+# taint : 汚染されている(プロビジョンで失敗した場合など)
+terraform taint aws_instance.example
+
+# tf ファイルの variable で定義した変数には default をつけるか、下記のいづれかの方法で値を設定する
+# - tfvars ファイル
+# - コマンドラインにて -var aaa=xxx と設定
+# - 環境変数にて TF_VAR_aaa と設定
+terraform apply -var 'region=us-west-2'
+terraform apply -var 'amis={ us-east-1 = "foo", us-west-2 = "bar" }'
+export TF_VAR_region=us-west-2
+
+# terraform.tfvars は自動ロード
+# 任意のファイルをロードする場合は -var-file で設定
+terraform apply -var-file="secret.tfvars" -var-file="production.tfvars"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">???</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># デフォルトのリストを直接定義
+variable "cidrs" { default = [] }
+
+# タイプでリストを指定してから別で定義
+variable "cidrs" { type = list }
+cidrs = [ "10.0.0.0/16", "10.1.0.0/16" ]
+
+terraform output ami</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_openssl">openssl</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">オレオレ証明書</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://dogmap.jp/2011/05/10/nginx-ssl/
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ref. https://dogmap.jp/2011/05/10/nginx-ssl/
 
 # 秘密鍵生成
 openssl genrsa -des3 -out server.key 2048
@@ -542,7 +603,7 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 <div class="listingblock">
 <div class="title">loop でぐるぐるスクリプト</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
 high=(aaa bbb ccc)
 middle=(iii jjj kkk)
 low=(xxx yyy zzz)
@@ -578,7 +639,7 @@ done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rsync --verbose --recursive --inplace --delete --force --compress --times --rsh='ssh -p {SSH_PORT} -i {SSH_SECRET_KEY_PATH}' {SOURCE} {DESTINATION_HOST}:{DESTINATION_PATH}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rsync --verbose --recursive --inplace --delete --force --compress --times --rsh='ssh -p {SSH_PORT} -i {SSH_SECRET_KEY_PATH}' {SOURCE} {DESTINATION_HOST}:{DESTINATION_PATH}</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -659,7 +720,7 @@ done</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># tar.gz
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># tar.gz
 tar -cvzf ${DEST}.tar.gz ${SRC}
 tar -cvzf ${DEST}.tgz ${SRC}
 # tar.Z
@@ -681,7 +742,7 @@ zip -r ${DEST}.zip ${SRC}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 自動認識
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 自動認識
 tar -xvf ${SRC}.tar.gz
 # tar.gz
 tar -xvzf ${SRC}.tar.gz
@@ -704,7 +765,7 @@ unzip ${SRC}.zip</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tree -L 4 --charset unicode</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tree -L 4 --charset unicode</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -753,7 +814,7 @@ unzip ${SRC}.zip</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig +trace ${domain or ipaddress}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dig +trace ${domain or ipaddress}</code></pre>
 </div>
 </div>
 </div>
@@ -764,7 +825,7 @@ unzip ${SRC}.zip</code></pre>
 <div class="listingblock">
 <div class="title">ランダム文字列</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># token68対応版
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># token68対応版
 # fold で文字数、 head で生成数
 cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 32 | head -n 32 | uniq</code></pre>
 </div>
@@ -772,7 +833,7 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 32 | head -n 32 | uniq</co
 <div class="listingblock">
 <div class="title">ダミーファイル生成</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 改行なしで 200MB のダミーファイル(開くとツライ)
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 改行なしで 200MB のダミーファイル(開くとツライ)
 head -c 200m /dev/urandom &gt; test.txt
 # ref. https://kazmax.zpp.jp/linux/random_file.html#ah_3
 
@@ -788,7 +849,7 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 1023 | head -n 1k &gt; dmy
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># snapshot
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># snapshot
 vagrant snapshot list
 vagrant snapshot save ${snapshot_name}
 vagrant snapshot restore ${snapshot_name}
@@ -803,7 +864,7 @@ vagrant snapshot delete ${snapshot_name}</code></pre>
 <div class="listingblock">
 <div class="title">ディスクの完全消去</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 対象のデバイスを特定
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 対象のデバイスを特定
 fdisk -l
 # 消去(of に対象のデバイスを指定)
 dd if=/dev/zero of=/dev/sdX bs=4096 status=progress
@@ -820,7 +881,7 @@ dd if=/dev/zero of=/dev/sdX bs=4096 status=progress
 <div class="listingblock">
 <div class="title">素数出力</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://www.mtioutput.com/entry/factor-number-list
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ref. https://www.mtioutput.com/entry/factor-number-list
 BEGIN=2
 END=1000
 seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
@@ -835,7 +896,7 @@ seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
 <h3 id="_git_author_の上書き">git author の上書き</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 文字列で username と email を指定する
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 文字列で username と email を指定する
 git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
 </div>
 </div>
@@ -844,7 +905,7 @@ git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
 <h3 id="_差分のあるファイルを抽出してコピー">差分のあるファイルを抽出してコピー</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DEST=pickup &amp;&amp; mkdir ${DEST}
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DEST=pickup &amp;&amp; mkdir ${DEST}
 git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
 if [ -e "${filepath}" ]; then \
   echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
@@ -863,7 +924,7 @@ done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl --show-error \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl --show-error \
      --silent \
      --request GET \
      --insecure
@@ -875,7 +936,7 @@ done</code></pre>
 <div class="listingblock">
 <div class="title">bash の変数展開を使った例</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
 H_ACCEPT=(-H 'application/json')
 H_AUTH=(-H 'Authorization: Bearer token')
 DATA=(-d '{"foo":"1", "bar":"baz"}')
@@ -891,7 +952,7 @@ curl -Ss -X POST -i "${H_CTYPE[@]}" "${H_ACCEPT[@]}" "${H_AUTH[@]}" "${DATA[@]}"
 <div class="listingblock">
 <div class="title">sql で md5 を使ってランダムな文字列</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://lets.postgresql.jp/documents/technical/gen_data/1
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ref. https://lets.postgresql.jp/documents/technical/gen_data/1
 SELECT md5(clock_timestamp()::text) FROM generate_series(1,3);</code></pre>
 </div>
 </div>
@@ -902,7 +963,7 @@ SELECT md5(clock_timestamp()::text) FROM generate_series(1,3);</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># uuid v4 を生成
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># uuid v4 を生成
 uuidgen
 # もしくは
 cat /proc/sys/kernel/random/uuid
@@ -918,7 +979,7 @@ for i in {1..100} ; do uuidgen; done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ファイルを1バイト単位、16進数とASCII文字でダンプする
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ファイルを1バイト単位、16進数とASCII文字でダンプする
 hexdump -C ${src}</code></pre>
 </div>
 </div>
@@ -930,7 +991,7 @@ hexdump -C ${src}</code></pre>
 <div class="listingblock">
 <div class="title">md5 によるファイルの差異チェック</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">md5sum ${file}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">md5sum ${file}</code></pre>
 </div>
 </div>
 </div>
@@ -941,7 +1002,7 @@ hexdump -C ${src}</code></pre>
 <div class="listingblock">
 <div class="title">docker で不要 images などの削除</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
 docker system prune -f
 
 # 個別に削除したい場合は以下のようにすればOK
@@ -956,7 +1017,7 @@ docker image prune -f</code></pre>
 <div class="listingblock">
 <div class="title">滅びの呪文</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://qiita.com/suin/items/19d65e191b96a0079417
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ref. https://qiita.com/suin/items/19d65e191b96a0079417
 docker-compose down --rmi all --volumes</code></pre>
 </div>
 </div>
@@ -970,7 +1031,7 @@ ref. <a href="https://docs.docker.com/registry/spec/auth/token/">Token Authentic
 <div class="listingblock">
 <div class="title">image の一覧取得</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 下記とかで www-authenticate からトークン取得用のurl, service, scopeなどを確認
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 下記とかで www-authenticate からトークン取得用のurl, service, scopeなどを確認
 curl https://example.com/v2/_catalog -v
 
 # トークン取得準備
@@ -1005,7 +1066,7 @@ curl -H "Authorization: Bearer ${DOCKER_ACCESS_TOKEN}" https://example.com/v2/${
 <div class="listingblock">
 <div class="title">adhoc に実行</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># IP 直指定
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># IP 直指定
 # ref. https://dev.classmethod.jp/articles/ansible-without-inventory/
 ansible -i 127.0.0.1, all -m ping <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1028,7 +1089,7 @@ ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg
 <div class="listingblock">
 <div class="title">playbook で host 直指定</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
 ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
 
 # sample.yml
@@ -1053,7 +1114,7 @@ ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
 <h3 id="_ansible_vault">ansible-vault</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 暗号化
 ansible-vault encrypt --ask-vault-pass encrypt.txt
 # 復号化
 ansible-vault decrypt --ask-vault-pass encrypted.txt
@@ -1068,7 +1129,7 @@ ansible-vault edit --ask-vault-pass encrypted.txt</code></pre>
 <h3 id="_プラクティスなディレクトリ構成">プラクティスなディレクトリ構成</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p group_vars/
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p group_vars/
 mkdir -p host_vars/
 mkdir -p roles
 touch production
@@ -1093,7 +1154,7 @@ ansible-galaxy init ${role_name}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp -rTv ${SRC_DIR} ${DEST_DIR}</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cp -rTv ${SRC_DIR} ${DEST_DIR}</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -1138,7 +1199,7 @@ ansible-galaxy init ${role_name}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 1秒ごとに5回、情報を出力
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 1秒ごとに5回、情報を出力
 DELAY=1
 COUNT=5
 vmstat ${DELAY} ${COUNT}</code></pre>
@@ -1162,7 +1223,7 @@ vmstat ${DELAY} ${COUNT}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  6  1      0 302380  16356 271852    0    0   561   568   80  590 43  7 43  7  0
@@ -1194,7 +1255,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  2  0 402944  54000 161912 745324    5   14    54    59  221  867 13  3 82  2  0
@@ -1227,7 +1288,7 @@ Linux カーネルが、OpenOffice のために RAM をさらに取得するた�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  3  1 244208  10312   1552  62636    4   23    98   249   44  304 28  3 68  1  0
@@ -1257,7 +1318,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  3  1 465872  36132  82588 1018364    7   17    70   127  214  838 12  3 82  3  0
@@ -1288,7 +1349,7 @@ oflag=dsync により、データが即座にディスクに書き込まれま�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  1  1      0  35628  14700 1239164    0    0  1740   652  117  601 11  4 66 20  0
@@ -1321,7 +1382,7 @@ updatedb がファイルシステム全体からすべてのファイル名を�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  2  1 403256 602848  17836 400356    5   15    50    50  207  861 13  3 83  1  0
  1  0 403256 601568  18892 400496    0    0  1048   364  337 1903  5  7  0 88  0
@@ -1343,7 +1404,7 @@ updatedb がファイルシステム全体からすべてのファイル名を�
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># install
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># install
 npm install -g redoc-cli
 
 # convert
@@ -1381,7 +1442,7 @@ redoc-cli bundle ${SRC} -o ${DEST}</code></pre>
 <div class="listingblock">
 <div class="title">基本的な使い方</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># コンテナの起動/停止/削除
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># コンテナの起動/停止/削除
 IMAGE=ubuntu:18.04
 lxc launch ${IMAGE} ${CONTAINER_NAME}
 lxc stop ${CONTAINER_NAME}
@@ -1442,7 +1503,7 @@ lxc config device show ${CONTAINER_NAME}</code></pre>
 <div class="listingblock">
 <div class="title">インストールからコンフィギュレーション</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># snap でインストール
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># snap でインストール
 sudo apt update
 sudo apt install -y btrfs-progs
 sudo snap install lxd --channel=3.0/stable
@@ -1461,7 +1522,7 @@ lxd init</code></pre>
 <h3 id="_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">CONTAINER_NAME=container_name
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">CONTAINER_NAME=container_name
 lxc file push ~/.ssh/id_rsa.pub ${CONTAINER_NAME}/tmp/id_rsa.pub
 lxc exec ${CONTAINER_NAME} -- sh -c 'cat /tmp/id_rsa.pub &gt;&gt; /home/ubuntu/.ssh/authorized_keys'
 
@@ -1477,7 +1538,7 @@ ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lxc config set ${container} security.nesting true</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">lxc config set ${container} security.nesting true</code></pre>
 </div>
 </div>
 </div>
@@ -1652,7 +1713,7 @@ ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 仮想環境を起動(抜けるときは exit or ctrl+D)
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 仮想環境を起動(抜けるときは exit or ctrl+D)
 pipenv shell
 
 # 仮想環境のパス
@@ -1714,7 +1775,7 @@ pipenv lock -r &gt; requirements.txt</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># インストール可能なpythonのバージョン一覧確認
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># インストール可能なpythonのバージョン一覧確認
 pyenv install --list
 
 # バージョンを指定してpythonをインストール
@@ -1747,7 +1808,7 @@ pyenv local 3.6.7</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gunicorn -k uvicorn.workers.UvicornWorker app:api</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gunicorn -k uvicorn.workers.UvicornWorker app:api</code></pre>
 </div>
 </div>
 </div>
@@ -1765,7 +1826,7 @@ pyenv local 3.6.7</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># バックアップ時
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># バックアップ時
 duplicity --allow-source-mismatch ${src_dir} file://${dest_dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
 duplicity --dry-run --allow-source-mismatch ${src_dir} file://${dest_dir}
 # ex)
@@ -1869,7 +1930,7 @@ duplicity verify file://${src_dir} ${target dir}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ダンプ
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ダンプ
 mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name &gt; dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
@@ -1944,7 +2005,7 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqldump -h ${host} \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mysqldump -h ${host} \
           -u ${username} \
           -p \
           --single-transaction \
@@ -1964,7 +2025,7 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 <h3 id="_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo apt update &amp;&amp; \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt update &amp;&amp; \
 sudo apt upgrade -y &amp;&amp; \
 sudo apt install -y mysql-server mysql-client
 
@@ -1993,7 +2054,7 @@ EOS
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 接続
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 接続
 psql -h ${host} -p ${port} -U ${user} -d ${database}
 
 # バックアップ
@@ -2006,7 +2067,7 @@ psql ${database_name} &lt; backup_file_name</code></pre>
 <h3 id="_select_結果をファイル出力">select 結果をファイル出力</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">psql ${database_name} -c '${sql};' -A -F $'\t' &gt; output.txt</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">psql ${database_name} -c '${sql};' -A -F $'\t' &gt; output.txt</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -2044,7 +2105,7 @@ psql ${database_name} &lt; backup_file_name</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 鍵の生成
 ssh-keygen -t ecdsa -b 256 -C "your-email@example.com" -f id_ecdsa
 ssh-keygen -t rsa -b 4096 -C "your-email@example.com" -f id_rsa
 
@@ -2141,7 +2202,7 @@ ssh-keyscan -H address &gt;&gt; known_hosts</code></pre>
 <div class="listingblock">
 <div class="title">pem 形式で生成</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 鍵の生成
 ssh-keygen -t rsa -b 4096 -m pem -f ${output}
 
 # 公開鍵は pem 形式で生成されないので pem 形式に変換
@@ -2190,7 +2251,7 @@ ssh-keygen -e -m pem -f ${input}.pub &gt; ${output}.pub.pem</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 鍵の生成
 gpg --full-gen-key
 
 # 登録の確認
@@ -2220,7 +2281,7 @@ gpg --decrypt secret.txt.asc</code></pre>
 <div class="listingblock">
 <div class="title">鍵を使わず暗号化/復号化</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 暗号化
 gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536 doc.txt
 # 復号化
 gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
@@ -2229,7 +2290,7 @@ gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
 <div class="listingblock">
 <div class="title">鍵のエクスポート/インポート</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 公開鍵のエクスポート
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 公開鍵のエクスポート
 gpg --output public.key --armor --export user-id
 # 公開鍵のインポート
 gpg --import public.key
@@ -2273,11 +2334,15 @@ gpg --import secret.asc</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-14 17:42:15 +0900
+Last updated 2020-12-17 23:39:50 +0900
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>
