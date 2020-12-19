@@ -509,6 +509,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_ssh">ssh</a></li>
 <li><a href="#_gpg">gpg</a></li>
+<li><a href="#_apt">apt</a></li>
 </ul>
 </div>
 </div>
@@ -2324,10 +2325,35 @@ gpg --import secret.asc</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_apt">apt</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># パッケージインストール、更新
+apt install ${package}
+# パッケージ削除
+apt remove ${package}
+# パッケージ削除(設定ファイル含む)
+apt purge ${package}
+# パケージリストの更新
+apt update
+# インストールされているパケージの更新
+apt upgrade
+# インストールされているパケージの一覧
+dpkg -l ${package}
+# パケージリストの検索
+apt-cache search ${package}
+# パケージの詳細表示
+apt-cache show ${package}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-19 14:37:01 +0900
+Last updated 2020-12-19 14:54:04 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
