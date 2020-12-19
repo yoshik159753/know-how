@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_less">less</a></li>
 <li><a href="#_terraform">terraform</a></li>
 <li><a href="#_openssl">openssl</a></li>
 <li><a href="#_for">for</a></li>
@@ -514,6 +515,76 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_less">less</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">less -S ${file}</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>+F</code>
+</td>
+<td class="hdlist2">
+<p>モニターモード(モニターモードで <code>Ctrl-c</code> で通常モード、通常モードで <code>F</code> でモニターモード)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-S</code>
+</td>
+<td class="hdlist2">
+<p>１行表示</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-s</code>
+</td>
+<td class="hdlist2">
+<p>連続した空白行を一つの空白行にまとめる</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-r</code>
+</td>
+<td class="hdlist2">
+<p>画面の再描写</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-N</code>
+</td>
+<td class="hdlist2">
+<p>行番号を表示</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-n</code>
+</td>
+<td class="hdlist2">
+<p>行番号を計算させない</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-p ${word}</code>
+</td>
+<td class="hdlist2">
+<p>wordのハイライト</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_terraform">terraform</h2>
 <div class="sectionbody">
@@ -2353,7 +2424,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-19 14:54:04 +0900
+Last updated 2020-12-19 15:05:40 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
