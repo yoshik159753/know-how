@@ -1,8 +1,7 @@
 == tar
 
-圧縮
-
 [source,bash]
+.圧縮
 ----
 # tar.gz
 tar -cvzf ${DEST}.tar.gz ${SRC}
@@ -21,9 +20,8 @@ tar -cvf ${DEST}.tar ${SRC}
 zip -r ${DEST}.zip ${SRC}
 ----
 
-展開
-
 [source,bash]
+.展開
 ----
 # 自動認識
 tar -xvf ${SRC}.tar.gz
