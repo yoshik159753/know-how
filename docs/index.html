@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_find">find</a></li>
 <li><a href="#_less">less</a></li>
 <li><a href="#_terraform">terraform</a></li>
 <li><a href="#_openssl">openssl</a></li>
@@ -515,6 +516,58 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_find">find</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 検索結果に対してgrepをかける
+find . -name '*' -exec grep {} hoge \;
+# 検索結果に対してgrepをかける(xargs)
+find . -name '*' | xargs grep hoge
+
+# 検索結果(カレント層、３日前まで)の log ファイルを old に移動する
+find . -maxdepth 1 -name "*.log" -mtime +3 -ls -exec mv {} old/ \;</code></pre>
+</div>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-name "PATTERN"</code>
+</td>
+<td class="hdlist2">
+<p>ファイル名</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-type fD</code>
+</td>
+<td class="hdlist2">
+<p>ファイルタイプ(<code>f</code> はファイル、 <code>d</code> はディレクトリ)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-maxdepth n</code>
+</td>
+<td class="hdlist2">
+<p>検索対象を n 階層に制限する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-mtime n</code>
+</td>
+<td class="hdlist2">
+<p>データが最後に修正されたのが n 日前のファイルを検索する</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_less">less</h2>
 <div class="sectionbody">
@@ -2424,7 +2477,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-19 15:05:40 +0900
+Last updated 2020-12-19 15:06:46 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
