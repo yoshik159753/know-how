@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/cron.adoc[]
+
 include::./contents/blkid.adoc[]
 
 include::./contents/mount.adoc[]
