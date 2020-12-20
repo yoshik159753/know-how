@@ -1525,14 +1525,24 @@ ansible-galaxy init ${role_name}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">cp -rTv ${SRC_DIR} ${DEST_DIR}</code></pre>
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ディレクトリの中身をコピー
+cp -rTv ${SRC_DIR} ${DEST_DIR}
+
+# 再帰的にコピー
+cp -r --parents ${source} ${directory}</code></pre>
 </div>
 </div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
 <div class="hdlist">
 <table>
 <tr>
 <td class="hdlist1">
-<code>r</code>
+<code>-r</code>
 </td>
 <td class="hdlist2">
 <p>再帰的に処理</p>
@@ -1548,13 +1558,34 @@ ansible-galaxy init ${role_name}</code></pre>
 </tr>
 <tr>
 <td class="hdlist1">
-<code>v</code>
+<code>-v</code>
 </td>
 <td class="hdlist2">
 <p>コピーする内容をコンソールに表示する</p>
 </td>
 </tr>
+<tr>
+<td class="hdlist1">
+<code>-P, --parents</code>
+</td>
+<td class="hdlist2">
+<p>フォルダ構成を維持してコピー</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-p, --preserve</code>
+</td>
+<td class="hdlist2">
+<p>権限などを保持してコピー</p>
+</td>
+</tr>
 </table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
