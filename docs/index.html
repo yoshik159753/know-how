@@ -1472,7 +1472,17 @@ curl -H "Authorization: Bearer ${DOCKER_ACCESS_TOKEN}" https://example.com/v2/${
 ansible -i 127.0.0.1, all -m ping <i class="conum" data-value="1"></i><b>(1)</b>
 
 # inventory から指定
-ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg=debug!" <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg=debug!" <i class="conum" data-value="2"></i><b>(2)</b>
+
+# ansibleで収集するfacts(要素)の一覧
+ansible localhost -m setup
+
+# cronの操作(設定)
+ansible -i Inventory host -m cron -a "name='jobname' minute='59' hour='18' weekday='1' job='ping'"
+# cronの操作(解除)
+ansible -i Inventory host -m cron -a "name='jobname' state=absent"
+# cronの操作(一覧)
+ansible -i Inventory host -a "crontab -l"</code></pre>
 </div>
 </div>
 <div class="colist arabic">

@@ -9,6 +9,16 @@ ansible -i 127.0.0.1, all -m ping # <1>
 
 # inventory から指定
 ansible -i ${inventory} ${host_name} -u ${remote_user} --become -m debug -a "msg=debug!" # <2>
+
+# ansibleで収集するfacts(要素)の一覧
+ansible localhost -m setup
+
+# cronの操作(設定)
+ansible -i Inventory host -m cron -a "name='jobname' minute='59' hour='18' weekday='1' job='ping'"
+# cronの操作(解除)
+ansible -i Inventory host -m cron -a "name='jobname' state=absent"
+# cronの操作(一覧)
+ansible -i Inventory host -a "crontab -l"
 ----
 <1> -i の値の末にカンマ(,)、またパターンとして all を付ける必要がある
 <2> host_name には inventory で定義されているホスト名を指定する
