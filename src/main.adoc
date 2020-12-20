@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/mount.adoc[]
+
 include::./contents/date.adoc[]
 
 include::./contents/tcpdump.adoc[]
