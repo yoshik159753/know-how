@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_date">date</a></li>
 <li><a href="#_tcpdump">tcpdump</a></li>
 <li><a href="#_du">du</a></li>
 <li><a href="#_find">find</a></li>
@@ -519,6 +520,51 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_date">date</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 日付時刻を設定
+date -s "2014/12/26 07:00:00"
+
+# 形式指定で表示
+date +"%Y%m%d%H%M%S"</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-s</code>
+</td>
+<td class="hdlist2">
+<p>日付時刻を設定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>+"format"</code>
+</td>
+<td class="hdlist2">
+<p>形式指定で表示</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_tcpdump">tcpdump</h2>
 <div class="sectionbody">
@@ -2684,7 +2730,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-20 22:37:48 +0900
+Last updated 2020-12-20 22:43:36 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
