@@ -16,6 +16,8 @@ include::./contents/openssl.adoc[]
 
 include::./contents/for.adoc[]
 
+include::./contents/while.adoc[]
+
 include::./contents/rsync.adoc[]
 
 include::./contents/tar.adoc[]
