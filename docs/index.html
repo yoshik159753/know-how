@@ -736,6 +736,27 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 <h2 id="_for">for</h2>
 <div class="sectionbody">
 <div class="listingblock">
+<div class="title">配列を処理</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+for var in hoge fuga foo bar
+do
+    echo $var
+done</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">10から20まで+2ずつ処理</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+for var in `seq 10 2 20`
+do
+    echo $var
+done
+# 10, 12, 14, 16, 18, 20</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">loop でぐるぐるスクリプト</div>
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
@@ -2501,7 +2522,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-20 22:20:35 +0900
+Last updated 2020-12-20 22:37:12 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
