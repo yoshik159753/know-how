@@ -1,0 +1,8 @@
+== blkid
+
+dev 情報について表示。
+
+[source,bash]
+----
+sudo blkid
+----
