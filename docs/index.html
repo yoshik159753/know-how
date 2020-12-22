@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_sudo">sudo</a></li>
 <li><a href="#_rsyslog">rsyslog</a></li>
 <li><a href="#_cron">cron</a></li>
 <li><a href="#_blkid">blkid</a></li>
@@ -524,6 +525,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_sudo">sudo</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">無制限 sudo を抑止する (ec2 を例として)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 対象ユーザーにパスワードを付与
+sudo passwd ec2-user
+# sudoers を変更
+sudo visudo -f /etc/sudoers.d/cloud-init
+# 次のように書き換え
+# del: ec2-user ALL = NOPASSWD: ALL
+# add: ec2-user ALL = (ALL) ALL</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_rsyslog">rsyslog</h2>
 <div class="sectionbody">
@@ -2929,7 +2947,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-22 23:15:58 +0900
+Last updated 2020-12-22 23:24:22 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
