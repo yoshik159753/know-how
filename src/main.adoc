@@ -3,6 +3,7 @@
 :toclevels: 5
 :icons: font
 :source-highlighter: highlightjs
+:prewrap!:
 
 include::./contents/tmux.adoc[]
 

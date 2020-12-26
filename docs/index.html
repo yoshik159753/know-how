@@ -531,7 +531,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 起動
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 起動
 tmux
 # 仮想ターミナルのリスト
 tmux ls
@@ -724,7 +724,7 @@ ESC
 <div class="listingblock">
 <div class="title">無制限 sudo を抑止する (ec2 を例として)</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 対象ユーザーにパスワードを付与
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 対象ユーザーにパスワードを付与
 sudo passwd ec2-user
 # sudoers を変更
 sudo visudo -f /etc/sudoers.d/cloud-init
@@ -747,7 +747,7 @@ sudo visudo -f /etc/sudoers.d/cloud-init
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="txt" class="language-txt hljs"># テンプレートの宣言。(変数宣言みたいなもの)
+<pre class="highlightjs highlight nowrap"><code data-lang="txt" class="language-txt hljs"># テンプレートの宣言。(変数宣言みたいなもの)
 # 先頭の $template はテンプレートディレクティブの指定。
 # また先頭に $ があるものはディレクティブと考えてよい。
 # XxxLogs はテンプレート名。変数名みたいなもの。後続の処理で利用する。
@@ -778,7 +778,7 @@ if $syslogfacility-text == 'daemon' and $programname contains 'xxx' then -?XxxLo
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># edit
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># edit
 crontab -u $user -e
 # list
 crontab -u $user -l
@@ -788,7 +788,7 @@ crontab -u $user -r</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs"># format
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs"># format
 分　時　日　月　曜日　コマンド
 
 # 毎日 00:55 に root ユーザでシャットダウンを実行
@@ -869,7 +869,7 @@ crontab -u $user -r</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo blkid</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">sudo blkid</code></pre>
 </div>
 </div>
 </div>
@@ -879,7 +879,7 @@ crontab -u $user -r</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># usbデバイスのマウント
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># usbデバイスのマウント
 sudo mount /dev/sda1 ./mnt
 # isoファイルのマウント
 sudo mount -o loop -t iso9660 ${src}.iso ./mnt
@@ -894,7 +894,7 @@ sudo umount ./mnt</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 日付時刻を設定
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 日付時刻を設定
 date -s "2014/12/26 07:00:00"
 
 # 形式指定で表示
@@ -935,7 +935,7 @@ date +"%Y%m%d%H%M%S"</code></pre>
 <div class="listingblock">
 <div class="title">時刻を合わせるワンライナー</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. http://qiita.com/pankona/items/258fed78c168918a8ad2 (NTPを使わずに時刻を合わせるワンライナー（Proxy環境下でも安心）)
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ref. http://qiita.com/pankona/items/258fed78c168918a8ad2 (NTPを使わずに時刻を合わせるワンライナー（Proxy環境下でも安心）)
 date -s "$(curl -s --head http://www.google.co.jp | grep ^Date | cut -b 7-)"</code></pre>
 </div>
 </div>
@@ -946,7 +946,7 @@ date -s "$(curl -s --head http://www.google.co.jp | grep ^Date | cut -b 7-)"</co
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tcpdump -ieth0 -s0 -n -X src host ${ipaddr}</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">tcpdump -ieth0 -s0 -n -X src host ${ipaddr}</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -1030,7 +1030,7 @@ date -s "$(curl -s --head http://www.google.co.jp | grep ^Date | cut -b 7-)"</co
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># カレントディレクトリを対象にトップ3の使用量を表示
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># カレントディレクトリを対象にトップ3の使用量を表示
 du -sm ./* | sort -k3 -nr</code></pre>
 </div>
 </div>
@@ -1041,7 +1041,7 @@ du -sm ./* | sort -k3 -nr</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 検索結果に対してgrepをかける
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 検索結果に対してgrepをかける
 find . -name '*' -exec grep {} hoge \;
 # 検索結果に対してgrepをかける(xargs)
 find . -name '*' | xargs grep hoge
@@ -1093,7 +1093,7 @@ find . -maxdepth 1 -name "*.log" -mtime +3 -ls -exec mv {} old/ \;</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">less -S ${file}</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">less -S ${file}</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -1163,7 +1163,7 @@ find . -maxdepth 1 -name "*.log" -mtime +3 -ls -exec mv {} old/ \;</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># aws コマンドラインの設定
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># aws コマンドラインの設定
 aws configure
 
 # フォーマット
@@ -1203,7 +1203,7 @@ terraform apply -var-file="secret.tfvars" -var-file="production.tfvars"</code></
 <div class="listingblock">
 <div class="title">???</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># デフォルトのリストを直接定義
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># デフォルトのリストを直接定義
 variable "cidrs" { default = [] }
 
 # タイプでリストを指定してから別で定義
@@ -1221,7 +1221,7 @@ terraform output ami</code></pre>
 <div class="listingblock">
 <div class="title">オレオレ証明書</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://dogmap.jp/2011/05/10/nginx-ssl/
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ref. https://dogmap.jp/2011/05/10/nginx-ssl/
 
 # 秘密鍵生成
 openssl genrsa -des3 -out server.key 2048
@@ -1245,7 +1245,7 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 <div class="listingblock">
 <div class="title">配列を処理</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
 for var in hoge fuga foo bar
 do
     echo $var
@@ -1255,7 +1255,7 @@ done</code></pre>
 <div class="listingblock">
 <div class="title">10から20まで+2ずつ処理</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
 for var in `seq 10 2 20`
 do
     echo $var
@@ -1266,7 +1266,7 @@ done
 <div class="listingblock">
 <div class="title">loop でぐるぐるスクリプト</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">#!/bin/bash
 high=(aaa bbb ccc)
 middle=(iii jjj kkk)
 low=(xxx yyy zzz)
@@ -1302,7 +1302,7 @@ done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 無限ループ
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 無限ループ
 while true;do [コマンド1];[コマンド2];...;sleep [秒数];done</code></pre>
 </div>
 </div>
@@ -1313,7 +1313,7 @@ while true;do [コマンド1];[コマンド2];...;sleep [秒数];done</code></pr
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">rsync --verbose --recursive --inplace --delete --force --compress --times --rsh='ssh -p {SSH_PORT} -i {SSH_SECRET_KEY_PATH}' {SOURCE} {DESTINATION_HOST}:{DESTINATION_PATH}</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">rsync --verbose --recursive --inplace --delete --force --compress --times --rsh='ssh -p {SSH_PORT} -i {SSH_SECRET_KEY_PATH}' {SOURCE} {DESTINATION_HOST}:{DESTINATION_PATH}</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -1392,7 +1392,7 @@ while true;do [コマンド1];[コマンド2];...;sleep [秒数];done</code></pr
 <div class="listingblock">
 <div class="title">圧縮</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># tar.gz
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># tar.gz
 tar -cvzf ${DEST}.tar.gz ${SRC}
 tar -cvzf ${DEST}.tgz ${SRC}
 # tar.Z
@@ -1412,7 +1412,7 @@ zip -r ${DEST}.zip ${SRC}</code></pre>
 <div class="listingblock">
 <div class="title">展開</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 自動認識
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 自動認識
 tar -xvf ${SRC}.tar.gz
 # tar.gz
 tar -xvzf ${SRC}.tar.gz
@@ -1431,7 +1431,7 @@ unzip ${SRC}.zip</code></pre>
 <div class="listingblock">
 <div class="title">中身確認</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tar tvzf ${SRC}.tar.gz</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">tar tvzf ${SRC}.tar.gz</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -1512,7 +1512,7 @@ unzip ${SRC}.zip</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">tree -L 4 --charset unicode</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">tree -L 4 --charset unicode</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -1561,7 +1561,7 @@ unzip ${SRC}.zip</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">dig +trace ${domain or ipaddress}</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">dig +trace ${domain or ipaddress}</code></pre>
 </div>
 </div>
 </div>
@@ -1572,7 +1572,7 @@ unzip ${SRC}.zip</code></pre>
 <div class="listingblock">
 <div class="title">ランダム文字列</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># token68対応版
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># token68対応版
 # fold で文字数、 head で生成数
 cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 32 | head -n 32 | uniq</code></pre>
 </div>
@@ -1580,7 +1580,7 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 32 | head -n 32 | uniq</co
 <div class="listingblock">
 <div class="title">ダミーファイル生成</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 改行なしで 200MB のダミーファイル(開くとツライ)
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 改行なしで 200MB のダミーファイル(開くとツライ)
 head -c 200m /dev/urandom &gt; test.txt
 # ref. https://kazmax.zpp.jp/linux/random_file.html#ah_3
 
@@ -1603,7 +1603,7 @@ cat /dev/urandom | tr -dc 'a-zA-Z0-9-._~+/' | fold -w 1023 | head -n 1k &gt; dmy
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># life cycle
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># life cycle
 vagrant init $name
 vagrant up
 vagrant ssh
@@ -1625,7 +1625,7 @@ vagrant snapshot delete ${snapshot_name}</code></pre>
 <div class="listingblock">
 <div class="title">Vagrantfile example</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="ruby" class="language-ruby hljs"># -*- mode: ruby -*-
+<pre class="highlightjs highlight nowrap"><code data-lang="ruby" class="language-ruby hljs"># -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -1714,7 +1714,7 @@ end</code></pre>
 <div class="listingblock">
 <div class="title">ディスクの完全消去</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 対象のデバイスを特定
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 対象のデバイスを特定
 fdisk -l
 # 消去(of に対象のデバイスを指定)
 dd if=/dev/zero of=/dev/sdX bs=4096 status=progress
@@ -1731,7 +1731,7 @@ dd if=/dev/zero of=/dev/sdX bs=4096 status=progress
 <div class="listingblock">
 <div class="title">素数出力</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://www.mtioutput.com/entry/factor-number-list
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ref. https://www.mtioutput.com/entry/factor-number-list
 BEGIN=2
 END=1000
 seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
@@ -1746,7 +1746,7 @@ seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
 <h3 id="_git_author_の上書き">git author の上書き</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 文字列で username と email を指定する
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 文字列で username と email を指定する
 git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
 </div>
 </div>
@@ -1755,7 +1755,7 @@ git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
 <h3 id="_差分のあるファイルを抽出してコピー">差分のあるファイルを抽出してコピー</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">DEST=pickup &amp;&amp; mkdir ${DEST}
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">DEST=pickup &amp;&amp; mkdir ${DEST}
 git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
 if [ -e "${filepath}" ]; then \
   echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
@@ -1774,7 +1774,7 @@ done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl --show-error \
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">curl --show-error \
      --silent \
      --request GET \
      --insecure
@@ -1786,7 +1786,7 @@ done</code></pre>
 <div class="listingblock">
 <div class="title">bash の変数展開を使った例</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">H_CTYPE=(-H 'Content-Type:application/json; charset=UTF-8')
 H_ACCEPT=(-H 'application/json')
 H_AUTH=(-H 'Authorization: Bearer token')
 DATA=(-d '{"foo":"1", "bar":"baz"}')
@@ -1802,7 +1802,7 @@ curl -Ss -X POST -i "${H_CTYPE[@]}" "${H_ACCEPT[@]}" "${H_AUTH[@]}" "${DATA[@]}"
 <div class="listingblock">
 <div class="title">sql で md5 を使ってランダムな文字列</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://lets.postgresql.jp/documents/technical/gen_data/1
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ref. https://lets.postgresql.jp/documents/technical/gen_data/1
 SELECT md5(clock_timestamp()::text) FROM generate_series(1,3);</code></pre>
 </div>
 </div>
@@ -1813,7 +1813,7 @@ SELECT md5(clock_timestamp()::text) FROM generate_series(1,3);</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># uuid v4 を生成
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># uuid v4 を生成
 uuidgen
 # もしくは
 cat /proc/sys/kernel/random/uuid
@@ -1829,7 +1829,7 @@ for i in {1..100} ; do uuidgen; done</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ファイルを1バイト単位、16進数とASCII文字でダンプする
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ファイルを1バイト単位、16進数とASCII文字でダンプする
 hexdump -C ${src}</code></pre>
 </div>
 </div>
@@ -1841,7 +1841,7 @@ hexdump -C ${src}</code></pre>
 <div class="listingblock">
 <div class="title">md5 によるファイルの差異チェック</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">md5sum ${file}</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">md5sum ${file}</code></pre>
 </div>
 </div>
 </div>
@@ -1852,7 +1852,7 @@ hexdump -C ${src}</code></pre>
 <div class="listingblock">
 <div class="title">docker で不要 images などの削除</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
 docker system prune -f
 
 # 個別に削除したい場合は以下のようにすればOK
@@ -1867,7 +1867,7 @@ docker image prune -f</code></pre>
 <div class="listingblock">
 <div class="title">滅びの呪文</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://qiita.com/suin/items/19d65e191b96a0079417
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ref. https://qiita.com/suin/items/19d65e191b96a0079417
 docker-compose down --rmi all --volumes</code></pre>
 </div>
 </div>
@@ -1881,7 +1881,7 @@ ref. <a href="https://docs.docker.com/registry/spec/auth/token/">Token Authentic
 <div class="listingblock">
 <div class="title">image の一覧取得</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 下記とかで www-authenticate からトークン取得用のurl, service, scopeなどを確認
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 下記とかで www-authenticate からトークン取得用のurl, service, scopeなどを確認
 curl https://example.com/v2/_catalog -v
 
 # トークン取得準備
@@ -1916,7 +1916,7 @@ curl -H "Authorization: Bearer ${DOCKER_ACCESS_TOKEN}" https://example.com/v2/${
 <div class="listingblock">
 <div class="title">adhoc に実行</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># IP 直指定
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># IP 直指定
 # ref. https://dev.classmethod.jp/articles/ansible-without-inventory/
 ansible -i 127.0.0.1, all -m ping <i class="conum" data-value="1"></i><b>(1)</b>
 
@@ -1949,7 +1949,7 @@ ansible -i Inventory host -a "crontab -l"</code></pre>
 <div class="listingblock">
 <div class="title">playbook で host 直指定</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># https://tekunabe.hatenablog.jp/entry/2018/06/11/ansible_inventory_list
 ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
 
 # sample.yml
@@ -1974,7 +1974,7 @@ ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
 <h3 id="_ansible_vault">ansible-vault</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 暗号化
 ansible-vault encrypt --ask-vault-pass encrypt.txt
 # 復号化
 ansible-vault decrypt --ask-vault-pass encrypted.txt
@@ -1989,7 +1989,7 @@ ansible-vault edit --ask-vault-pass encrypted.txt</code></pre>
 <h3 id="_プラクティスなディレクトリ構成">プラクティスなディレクトリ構成</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mkdir -p group_vars/
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">mkdir -p group_vars/
 mkdir -p host_vars/
 mkdir -p roles
 touch production
@@ -2014,7 +2014,7 @@ ansible-galaxy init ${role_name}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ディレクトリの中身をコピー
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ディレクトリの中身をコピー
 cp -rTv ${SRC_DIR} ${DEST_DIR}
 
 # 再帰的にコピー
@@ -2090,7 +2090,7 @@ cp -r --parents ${source} ${directory}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 1秒ごとに5回、情報を出力
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 1秒ごとに5回、情報を出力
 DELAY=1
 COUNT=5
 vmstat ${DELAY} ${COUNT}</code></pre>
@@ -2114,7 +2114,7 @@ vmstat ${DELAY} ${COUNT}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  6  1      0 302380  16356 271852    0    0   561   568   80  590 43  7 43  7  0
@@ -2146,7 +2146,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  2  0 402944  54000 161912 745324    5   14    54    59  221  867 13  3 82  2  0
@@ -2179,7 +2179,7 @@ Linux カーネルが、OpenOffice のために RAM をさらに取得するた�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  3  1 244208  10312   1552  62636    4   23    98   249   44  304 28  3 68  1  0
@@ -2209,7 +2209,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  3  1 465872  36132  82588 1018364    7   17    70   127  214  838 12  3 82  3  0
@@ -2240,7 +2240,7 @@ oflag=dsync により、データが即座にディスクに書き込まれま�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">[user@RHEL ~]$ vmstat 1 5
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  1  1      0  35628  14700 1239164    0    0  1740   652  117  601 11  4 66 20  0
@@ -2273,7 +2273,7 @@ updatedb がファイルシステム全体からすべてのファイル名を�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
  2  1 403256 602848  17836 400356    5   15    50    50  207  861 13  3 83  1  0
  1  0 403256 601568  18892 400496    0    0  1048   364  337 1903  5  7  0 88  0
@@ -2295,7 +2295,7 @@ updatedb がファイルシステム全体からすべてのファイル名を�
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># install
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># install
 npm install -g redoc-cli
 
 # convert
@@ -2333,7 +2333,7 @@ redoc-cli bundle ${SRC} -o ${DEST}</code></pre>
 <div class="listingblock">
 <div class="title">基本的な使い方</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># コンテナの起動/停止/削除
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># コンテナの起動/停止/削除
 IMAGE=ubuntu:18.04
 lxc launch ${IMAGE} ${CONTAINER_NAME}
 lxc stop ${CONTAINER_NAME}
@@ -2394,7 +2394,7 @@ lxc config device show ${CONTAINER_NAME}</code></pre>
 <div class="listingblock">
 <div class="title">インストールからコンフィギュレーション</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># snap でインストール
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># snap でインストール
 sudo apt update
 sudo apt install -y btrfs-progs
 sudo snap install lxd --channel=3.0/stable
@@ -2413,7 +2413,7 @@ lxd init</code></pre>
 <h3 id="_コンテナに_ssh_の_publickey_を登録する">コンテナに ssh の publickey を登録する</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">CONTAINER_NAME=container_name
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">CONTAINER_NAME=container_name
 lxc file push ~/.ssh/id_rsa.pub ${CONTAINER_NAME}/tmp/id_rsa.pub
 lxc exec ${CONTAINER_NAME} -- sh -c 'cat /tmp/id_rsa.pub &gt;&gt; /home/ubuntu/.ssh/authorized_keys'
 
@@ -2429,7 +2429,7 @@ ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">lxc config set ${container} security.nesting true</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">lxc config set ${container} security.nesting true</code></pre>
 </div>
 </div>
 </div>
@@ -2604,7 +2604,7 @@ ssh-keyscan -H ${CONTAINER_IP} &gt;&gt; ~/.ssh/known_hosts</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 仮想環境を起動(抜けるときは exit or ctrl+D)
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 仮想環境を起動(抜けるときは exit or ctrl+D)
 pipenv shell
 
 # 仮想環境のパス
@@ -2666,7 +2666,7 @@ pipenv lock -r &gt; requirements.txt</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># インストール可能なpythonのバージョン一覧確認
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># インストール可能なpythonのバージョン一覧確認
 pyenv install --list
 
 # バージョンを指定してpythonをインストール
@@ -2699,7 +2699,7 @@ pyenv local 3.6.7</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">gunicorn -k uvicorn.workers.UvicornWorker app:api</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">gunicorn -k uvicorn.workers.UvicornWorker app:api</code></pre>
 </div>
 </div>
 </div>
@@ -2717,7 +2717,7 @@ pyenv local 3.6.7</code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># バックアップ時
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># バックアップ時
 duplicity --allow-source-mismatch ${src_dir} file://${dest_dir} <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
 duplicity --dry-run --allow-source-mismatch ${src_dir} file://${dest_dir}
 # ex)
@@ -2821,7 +2821,7 @@ duplicity verify file://${src_dir} ${target dir}</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ダンプ
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ダンプ
 mysqldump -h 127.0.0.1 -u user-name -p --single-transaction --ignore-table database.table --no-tablespaces database-name &gt; dump.sql
 # リストア
 mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
@@ -2896,7 +2896,7 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">mysqldump -h ${host} \
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">mysqldump -h ${host} \
           -u ${username} \
           -p \
           --single-transaction \
@@ -2916,7 +2916,7 @@ mysql -h 127.0.0.1 -u user-name -p database-name &lt; dump.sql</code></pre>
 <h3 id="_ubuntu_でざっくり使える状態にするスクリプト">ubuntu でざっくり使える状態にするスクリプト</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">sudo apt update &amp;&amp; \
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">sudo apt update &amp;&amp; \
 sudo apt upgrade -y &amp;&amp; \
 sudo apt install -y mysql-server mysql-client
 
@@ -2945,7 +2945,7 @@ EOS
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 接続
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 接続
 psql -h ${host} -p ${port} -U ${user} -d ${database}
 
 # バックアップ
@@ -2958,7 +2958,7 @@ psql ${database_name} &lt; backup_file_name</code></pre>
 <h3 id="_select_結果をファイル出力">select 結果をファイル出力</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">psql ${database_name} -c '${sql};' -A -F $'\t' &gt; output.txt</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">psql ${database_name} -c '${sql};' -A -F $'\t' &gt; output.txt</code></pre>
 </div>
 </div>
 <div class="hdlist">
@@ -2996,7 +2996,7 @@ psql ${database_name} &lt; backup_file_name</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
 ssh-keygen -t ecdsa -b 256 -C "your-email@example.com" -f id_ecdsa
 ssh-keygen -t rsa -b 4096 -C "your-email@example.com" -f id_rsa
 
@@ -3093,7 +3093,7 @@ ssh-keyscan -H address &gt;&gt; known_hosts</code></pre>
 <div class="listingblock">
 <div class="title">pem 形式で生成</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
 ssh-keygen -t rsa -b 4096 -m pem -f ${output}
 
 # 公開鍵は pem 形式で生成されないので pem 形式に変換
@@ -3142,7 +3142,7 @@ ssh-keygen -e -m pem -f ${input}.pub &gt; ${output}.pub.pem</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 鍵の生成
 gpg --full-gen-key
 
 # 登録の確認
@@ -3172,7 +3172,7 @@ gpg --decrypt secret.txt.asc</code></pre>
 <div class="listingblock">
 <div class="title">鍵を使わず暗号化/復号化</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 暗号化
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 暗号化
 gpg -c --s2k-cipher-algo AES256 --s2k-digest-algo SHA512 --s2k-count 65536 doc.txt
 # 復号化
 gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
@@ -3181,7 +3181,7 @@ gpg --output doc.txt --decrypt doc.txt.gpg</code></pre>
 <div class="listingblock">
 <div class="title">鍵のエクスポート/インポート</div>
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># 公開鍵のエクスポート
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 公開鍵のエクスポート
 gpg --output public.key --armor --export user-id
 # 公開鍵のインポート
 gpg --import public.key
@@ -3227,7 +3227,7 @@ gpg --import secret.asc</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># パッケージインストール、更新
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># パッケージインストール、更新
 apt install ${package}
 # パッケージ削除
 apt remove ${package}
@@ -3250,7 +3250,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-26 17:14:38 +0900
+Last updated 2020-12-26 17:23:10 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
