@@ -1974,6 +1974,9 @@ docker run -it $IMAGE_TAG_NAME /bin/bash
 # バックグラウンドで動いているコンテナへアタッチする
 docker exec -it $CONTAINER /bin/bash
 
+# カレントディレクトリをマウントした ubuntu コンテナを起動してアタッチ
+docker run -it -v `pwd`:/mnt/host:rw ubuntu /bin/bash
+
 # コンテナ停止 (docker ps より確認)
 docker stop $CONTAINER_NAME
 # コンテナ削除 (docker ps -a より確認)
