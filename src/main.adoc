@@ -5,6 +5,8 @@
 :source-highlighter: highlightjs
 :prewrap!:
 
+include::./contents/which.adoc[]
+
 include::./contents/tmux.adoc[]
 
 include::./contents/sudo.adoc[]

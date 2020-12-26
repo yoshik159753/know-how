@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_which">which</a></li>
 <li><a href="#_tmux">tmux</a></li>
 <li><a href="#_sudo">sudo</a></li>
 <li><a href="#_rsyslog">rsyslog</a></li>
@@ -526,6 +527,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_which">which</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>コマンドの場所を表示する。
+コマンドは環境変数 <code>PATH</code> を元に検索される。
+なお <code>cd, echo</code> などは内部コマンドと呼ばれており検索しても表示されない。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">which man</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_tmux">tmux</h2>
 <div class="sectionbody">
@@ -3250,7 +3266,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-26 17:23:10 +0900
+Last updated 2020-12-26 17:29:09 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
