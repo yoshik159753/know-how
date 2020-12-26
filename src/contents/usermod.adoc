@@ -1,0 +1,11 @@
+== usermod
+
+root 権限で実行する。
+
+[source,bash]
+----
+# グループの追加
+usermod -aG $GROUPS $USER
+# グループの置き換え
+usermod -G $GROUPS $USER
+----
