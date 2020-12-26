@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/tmux.adoc[]
+
 include::./contents/sudo.adoc[]
 
 include::./contents/rsyslog.adoc[]
