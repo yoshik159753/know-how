@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_image_magick">image magick</a></li>
 <li><a href="#_which">which</a></li>
 <li><a href="#_tmux">tmux</a></li>
 <li><a href="#_sudo">sudo</a></li>
@@ -527,6 +528,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_image_magick">image magick</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">拡大縮小</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">convert -geometry 50% $src $dest
+convert -geometry 200x200 $src $dest
+# 横幅自動、縦幅固定
+convert $src -resize x256 $dest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">切り抜き</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># width と height は x で区切る
+convert -crop $widthx$height+$x+$y $src $dest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">画質</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 十の位は品質で、一の位は圧縮形式。一の位は基本 0 でよさそう
+convert $src -quality 70 $dest</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_which">which</h2>
 <div class="sectionbody">
@@ -3266,7 +3295,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-26 17:29:09 +0900
+Last updated 2020-12-26 17:36:03 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
