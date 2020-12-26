@@ -1933,12 +1933,44 @@ hexdump -C ${src}</code></pre>
 <div class="sect1">
 <h2 id="_docker">docker</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>ユーザーに <code>docker</code> グループを付与すると <code>sudo</code> が不要となる(root ユーザーレベルにもなる)。
+ユーザーのグループ操作は <code>usermod</code> を参照。</p>
+</div>
 <div class="listingblock">
-<div class="title">docker で不要 images などの削除</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
-docker system prune -f
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 起動中のコンテナ一覧を表示
+docker ps
+# 全コンテナ(停止中も含む)を表示
+docker ps -a
+# イメージの一覧を表示
+docker images
+# ポートのマッピングを表示
+docker port $CONTAINER_NAME
+# コンテナの詳細な情報を表示
+docker inspect $CONTAINER_NAME
 
+# イメージからコンテナを生成してバックグラウンドで起動。またポートを公開する
+docker run -d -p $HOST_PORT:$CONTAINER_PORT --name $CONTAINER_NAME $IMAGE_TAG_NAME
+# イメージからコンテナを生成して起動、およびコマンドを実行 (下記では ssh でコンテナに接続しているようなイメージ)
+docker run -it $IMAGE_TAG_NAME /bin/bash
+# バックグラウンドで動いているコンテナへアタッチする
+docker exec -it $CONTAINER /bin/bash
+
+# コンテナ停止 (docker ps より確認)
+docker stop $CONTAINER_NAME
+# コンテナ削除 (docker ps -a より確認)
+docker rm $CONTAINER_NAME
+# イメージ削除 (docker images より確認)
+docker rmi $IMAGE_TAG_NAME
+
+# Dockerfile からイメージを生成する。 PATH に `.` を指定するとカレントディレクトリの Dockerfile を対象とする
+docker build -t $IMAGE_TAG_NAME $PATH
+# Docker Hub よりイメージを取得
+docker pull $NAME
+
+# 停止中のコンテナや未使用ボリュームやイメージやネットワークを全部削除する
+docker system prune -f
 # 個別に削除したい場合は以下のようにすればOK
 docker container prune -f
 docker volume prune -f
