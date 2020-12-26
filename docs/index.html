@@ -739,6 +739,13 @@ date +"%Y%m%d%H%M%S"</code></pre>
 </dd>
 </dl>
 </div>
+<div class="listingblock">
+<div class="title">時刻を合わせるワンライナー</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. http://qiita.com/pankona/items/258fed78c168918a8ad2 (NTPを使わずに時刻を合わせるワンライナー（Proxy環境下でも安心）)
+date -s "$(curl -s --head http://www.google.co.jp | grep ^Date | cut -b 7-)"</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
