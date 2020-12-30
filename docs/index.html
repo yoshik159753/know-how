@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_lsof">lsof</a></li>
 <li><a href="#_usermod">usermod</a></li>
 <li><a href="#_tee">tee</a></li>
 <li><a href="#_pandoc">pandoc</a></li>
@@ -537,6 +538,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_lsof">lsof</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>プロセスが開いているファイルを表示するコマンド</p>
+</li>
+<li>
+<p>ポートを使用しているプロセスを調べられる</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># port 80, 8080 を使用しているプロセスを表示
+lsof -i:80,8080</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_usermod">usermod</h2>
 <div class="sectionbody">
@@ -3528,7 +3550,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-30 21:03:11 +0900
+Last updated 2020-12-30 21:13:21 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

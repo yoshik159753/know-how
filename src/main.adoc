@@ -5,6 +5,8 @@
 :source-highlighter: highlightjs
 :prewrap!:
 
+include::./contents/lsof.adoc[]
+
 include::./contents/usermod.adoc[]
 
 include::./contents/tee.adoc[]
