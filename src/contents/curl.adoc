@@ -5,11 +5,20 @@
 curl --show-error \
      --silent \
      --request GET \
-     --insecure
+     --insecure \
      --include \
      --header "Authorization: Bearer ${token}" \
      ${url}
 ----
+
+options::
++
+--
+[horizontal]
+`--insecure`:: SSL の警告を無視する
+`--include / -i`:: レスポンスヘッダ/ボディ表示
+`-d`:: POST のボディ部を設定
+--
 
 [source,bash]
 .bash の変数展開を使った例

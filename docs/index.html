@@ -1891,11 +1891,50 @@ done</code></pre>
 <pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">curl --show-error \
      --silent \
      --request GET \
-     --insecure
+     --insecure \
      --include \
      --header "Authorization: Bearer ${token}" \
      ${url}</code></pre>
 </div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--insecure</code>
+</td>
+<td class="hdlist2">
+<p>SSL の警告を無視する</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--include / -i</code>
+</td>
+<td class="hdlist2">
+<p>レスポンスヘッダ/ボディ表示</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-d</code>
+</td>
+<td class="hdlist2">
+<p>POST のボディ部を設定</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 <div class="listingblock">
 <div class="title">bash の変数展開を使った例</div>
