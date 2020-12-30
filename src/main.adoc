@@ -23,6 +23,8 @@ include::./contents/rsyslog.adoc[]
 
 include::./contents/cron.adoc[]
 
+include::./contents/lsblk.adoc[]
+
 include::./contents/blkid.adoc[]
 
 include::./contents/mount.adoc[]

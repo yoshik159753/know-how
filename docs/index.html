@@ -452,6 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_sudo">sudo</a></li>
 <li><a href="#_rsyslog">rsyslog</a></li>
 <li><a href="#_cron">cron</a></li>
+<li><a href="#_lsblk">lsblk</a></li>
 <li><a href="#_blkid">blkid</a></li>
 <li><a href="#_mount">mount</a></li>
 <li><a href="#_date">date</a></li>
@@ -965,6 +966,42 @@ crontab -u $user -r</code></pre>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lsblk">lsblk</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ブロックデバイス情報について表示。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">sudo lsblk -p</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-p</code>
+</td>
+<td class="hdlist2">
+<p>パスを含めて表示</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3480,7 +3517,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-30 20:39:58 +0900
+Last updated 2020-12-30 21:03:11 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

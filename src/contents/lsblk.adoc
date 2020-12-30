@@ -1,0 +1,15 @@
+== lsblk
+
+ブロックデバイス情報について表示。
+
+[source,bash]
+----
+sudo lsblk -p
+----
+
+options::
++
+--
+[horizontal]
+`-p`:: パスを含めて表示
+--
