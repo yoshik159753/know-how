@@ -1970,14 +1970,19 @@ git commit --amend --author="username &lt;user@example.com&gt;"</code></pre>
 <h3 id="_差分のあるファイルを抽出してコピー">差分のあるファイルを抽出してコピー</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">DEST=pickup &amp;&amp; mkdir ${DEST}
-git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
-if [ -e "${filepath}" ]; then \
-  echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
-  cp -r --parents "${filepath}" "${DEST}"; \
-else \
-  echo "[IGNORE] ${filepath}"; \
-fi \
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">#!/bin/sh
+DEST=pickup
+rm -rf ${DEST}
+mkdir ${DEST}
+git diff --stat --name-only @^ @ | while read filepath; do
+if [ -e "${filepath}" ]; then
+  echo "[cp] ${filepath} to ${DEST}/fix/${filepath}"
+  mkdir -p ${DEST}/org/`dirname ${filepath}`
+  mkdir -p ${DEST}/fix/`dirname ${filepath}`
+  cp -r "${filepath}" "${DEST}/fix/${filepath}"
+else
+  echo "[IGNORE] ${filepath}"
+fi
 done</code></pre>
 </div>
 </div>

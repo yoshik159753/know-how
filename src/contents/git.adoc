@@ -25,13 +25,18 @@ git commit --amend --author="username <user@example.com>"
 
 [source,bash]
 ----
-DEST=pickup && mkdir ${DEST}
-git diff --stat --name-only ${BASE_BRANCH} ${DIFF_BRANCH} | while read filepath; do \
-if [ -e "${filepath}" ]; then \
-  echo "[cp] ${filepath} to ${DEST}/${filepath}"; \
-  cp -r --parents "${filepath}" "${DEST}"; \
-else \
-  echo "[IGNORE] ${filepath}"; \
-fi \
+#!/bin/sh
+DEST=pickup
+rm -rf ${DEST}
+mkdir ${DEST}
+git diff --stat --name-only @^ @ | while read filepath; do
+if [ -e "${filepath}" ]; then
+  echo "[cp] ${filepath} to ${DEST}/fix/${filepath}"
+  mkdir -p ${DEST}/org/`dirname ${filepath}`
+  mkdir -p ${DEST}/fix/`dirname ${filepath}`
+  cp -r "${filepath}" "${DEST}/fix/${filepath}"
+else
+  echo "[IGNORE] ${filepath}"
+fi
 done
 ----
