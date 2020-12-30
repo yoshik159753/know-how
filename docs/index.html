@@ -464,7 +464,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_for">for</a></li>
 <li><a href="#_while">while</a></li>
 <li><a href="#_rsync">rsync</a></li>
-<li><a href="#_tar">tar</a></li>
+<li><a href="#_tar">tar</a>
+<ul class="sectlevel2">
+<li><a href="#_ログ圧縮">ログ圧縮</a></li>
+</ul>
+</li>
 <li><a href="#_tree">tree</a></li>
 <li><a href="#_dig">dig</a></li>
 <li><a href="#_urand">urand</a></li>
@@ -1606,6 +1610,31 @@ unzip ${SRC}.zip</code></pre>
 </div>
 </dd>
 </dl>
+</div>
+<div class="sect2">
+<h3 id="_ログ圧縮">ログ圧縮</h3>
+<div class="paragraph">
+<p><code>foobar.log.YYYYMMDD</code> のようなログを圧縮する。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">find ./ -name '*.log.*' -type f ! -name '*.tar.gz' -exec tar --remove-files -cvzf {}.tar.gz {} \;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ポイントは <code>! -name '*.tar.gz'</code> で圧縮済みの <code>tar.gz ファイル</code> を除外している。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>

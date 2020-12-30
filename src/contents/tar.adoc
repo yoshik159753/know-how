@@ -57,3 +57,17 @@ tar options::
 `-C`:: ディレクトリ DIR へ移動
 `-t`:: 書庫の内容を表示する
 --
+
+=== ログ圧縮
+
+`foobar.log.YYYYMMDD` のようなログを圧縮する。
+
+[source,bash]
+----
+find ./ -name '*.log.*' -type f ! -name '*.tar.gz' -exec tar --remove-files -cvzf {}.tar.gz {} \;
+----
+
+[TIP]
+====
+ポイントは `! -name '*.tar.gz'` で圧縮済みの `tar.gz ファイル` を除外している。
+====
