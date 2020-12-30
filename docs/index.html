@@ -1843,6 +1843,19 @@ seq ${BEGIN} ${END} | factor | cut -d" " -f2 | sort -nu</code></pre>
 <div class="sect1">
 <h2 id="_git">git</h2>
 <div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># tag 作成
+git tag v0.0.1 -m "message"
+# tag 削除
+git tag -d v0.0.1
+# tag 一覧 (-n でメッセージの表示、数値でメッセージの行数を指定)
+git tag --list
+git tag --list -n3
+# tag push (ブランチと一緒)
+git push $remote v0.0.1</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_git_author_の上書き">git author の上書き</h3>
 <div class="listingblock">
