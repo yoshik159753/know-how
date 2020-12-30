@@ -71,6 +71,8 @@ include::./contents/uuidgen.adoc[]
 
 include::./contents/hexdump.adoc[]
 
+include::./contents/sha.adoc[]
+
 include::./contents/md5.adoc[]
 
 include::./contents/docker.adoc[]

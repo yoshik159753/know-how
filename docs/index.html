@@ -481,6 +481,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_sql">sql</a></li>
 <li><a href="#_uuidgen">uuidgen</a></li>
 <li><a href="#_hexdump">hexdump</a></li>
+<li><a href="#_sha">sha</a></li>
 <li><a href="#_md5">md5</a></li>
 <li><a href="#_docker">docker</a>
 <ul class="sectlevel2">
@@ -1990,6 +1991,17 @@ hexdump -C ${src}</code></pre>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_sha">sha</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">ランダム文字列</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">date +"%s" | sha1sum | cut -b -40</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_md5">md5</h2>
 <div class="sectionbody">
 <div class="listingblock">
@@ -3439,7 +3451,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-12-26 18:23:21 +0900
+Last updated 2020-12-30 20:39:58 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
