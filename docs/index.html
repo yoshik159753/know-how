@@ -2000,7 +2000,10 @@ done</code></pre>
      --insecure \
      --include \
      --header "Authorization: Bearer ${token}" \
-     ${url}</code></pre>
+     ${url}
+
+# ファイルダウンロード (ex. docker-compose のダウンロード)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose</code></pre>
 </div>
 </div>
 <div class="dlist">
@@ -2033,6 +2036,22 @@ done</code></pre>
 </td>
 <td class="hdlist2">
 <p>POST のボディ部を設定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-o</code>
+</td>
+<td class="hdlist2">
+<p>ダウンロードしたファイルの格納先を指定</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>-L</code>
+</td>
+<td class="hdlist2">
+<p>リダイレクトがあったらリダイレクト先の情報を取る</p>
 </td>
 </tr>
 </table>
