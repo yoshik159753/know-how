@@ -5,6 +5,8 @@
 :source-highlighter: highlightjs
 :prewrap!:
 
+* link:python.html[python]
+
 include::./contents/lsof.adoc[]
 
 include::./contents/usermod.adoc[]
