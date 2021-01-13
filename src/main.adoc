@@ -6,6 +6,7 @@
 :prewrap!:
 
 * link:python.html[python]
+* link:php.html[php]
 * link:ubuntu.html[ubuntu]
 
 include::./contents/lsof.adoc[]
