@@ -16,6 +16,8 @@ ssh-keygen -y -f id_rsa > id_rsa.pub
 
 # リモートサーバーに公開鍵をコピー
 ssh-copy-id -i id_rsa.pub -p port your-name@address
+# パスワード認証が使えない、異なるユーザーに登録する場合とか
+cat ~/.ssh/id_rsa.pub | ssh hoge_user@hogehoge.hoge.com 'cat >> .ssh/authorized_keys'
 
 # リモートホストの情報を登録
 ssh-keyscan -H address >> known_hosts
