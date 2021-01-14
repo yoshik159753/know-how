@@ -10,7 +10,51 @@ psql -h ${host} -p ${port} -U ${user} -d ${database}
 # バックアップ
 pg_dump -h ${host} -p ${port} -U ${user} ${database_name} > backup_file_name
 # リストア
-psql ${database_name} < backup_file_name
+psql -h $host -p $port -U $username -d $databasename -f $dumpfile
+----
+
+pg_dump options::
++
+--
+[horizontal]
+`--no-owner`:: owner を付与しない。異なる role で DB をリストアするような場合に使える。
+--
+
+
+[source,sql]
+----
+-- ロール(ユーザー)一覧
+\du
+-- ロール(ユーザー)作成
+create role rolename with login password 'password';
+-- ロール(ユーザー)削除
+drop role rolename;
+
+-- データベース一覧
+\l
+-- データベース作成
+create database newdb;
+-- データベース削除
+drop database targetdb;
+-- データベース切り替え
+\c dbname
+-- 選択中のデータベースを確認
+select current_database();
+
+-- スキーマ一覧
+\dn
+
+-- テーブル一覧
+\dt
+
+-- インデックス一覧
+\di
+-- インデックス一覧(スキーマ指定)
+\di schema.*
+-- インデックス詳細
+\d indexname
+-- インデックス詳細(スキーマ指定)
+\d schema.indexname
 ----
 
 === select 結果をファイル出力

@@ -443,8 +443,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_firewall">firewall</a></li>
+<li><a href="#_grep">grep</a></li>
+<li><a href="#_nginx">nginx</a></li>
+<li><a href="#_httpd">httpd</a></li>
+<li><a href="#_chmod">chmod</a></li>
+<li><a href="#_chown">chown</a></li>
 <li><a href="#_lsof">lsof</a></li>
-<li><a href="#_usermod">usermod</a></li>
+<li><a href="#_groupadd_groupmod_groupdel">groupadd, groupmod, groupdel</a></li>
+<li><a href="#_useradd_usermod_userdel">useradd, usermod, userdel</a></li>
+<li><a href="#_passwd">passwd</a></li>
 <li><a href="#_tee">tee</a></li>
 <li><a href="#_pandoc">pandoc</a></li>
 <li><a href="#_image_magick">image magick</a></li>
@@ -531,7 +539,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_select_結果をファイル出力">select 結果をファイル出力</a></li>
 </ul>
 </li>
-<li><a href="#_ssh">ssh</a></li>
+<li><a href="#_ssh">ssh</a>
+<ul class="sectlevel2">
+<li><a href="#_ssh_agent">ssh-agent</a></li>
+</ul>
+</li>
 <li><a href="#_gpg">gpg</a></li>
 <li><a href="#_apt">apt</a></li>
 </ul>
@@ -552,6 +564,232 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="ubuntu.html">ubuntu</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_firewall">firewall</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">firewall-cmd</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># list
+firewall-cmd --list-all
+# list (full?)
+firewall-cmd --list-all-zones
+
+# add
+firewall-cmd --zone=public --add-rich-rule='rule familiy=ipv4 source address="xxx.xxx.xxx.xxx/xx" port port="xxx" protocol="tcp" accept' --permanent
+
+# remove
+firewall-cmd --zone=public --remove-rich-rule='rule familiy=ipv4 source address="xxx.xxx.xxx.xxx/xx" port port="xxx" protocol="tcp" accept' --permanent
+
+# reload
+firewall-cmd --reload</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grep">grep</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># コメントアウト行(#)の除外
+# ref. https://qiita.com/notakaos/items/91d807f3151694e6c7a8
+cat $FILE | grep -v '^\s*#' | grep -v '^\s*$'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nginx">nginx</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># conf ファイルのチェック
+nginx -t</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_httpd">httpd</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># conf ファイルのチェック
+apachectl configtest
+
+# conf ファイルのチェック(OS, ディストリビューションによってはこちら)
+apache2ctl configtest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chmod">chmod</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 数値指定
+chmod 755 -R ./
+
+# シンボル指定(カンマで複数指定可能)
+chmod u+rwx,g+rw,o=r -R ./</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">シンボルの指定について</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. 対象</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>u</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ユーザー(user)、オーナー</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">グループ(group)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">その他(others)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">すべて(all)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">設定なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">すべて(all)と同様</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. 振る舞い</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値を追加</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値を削除</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値で上書き</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. パーミッション</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">読み込み権限</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">書き込み権限</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">実行権限</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-R</code>
+</td>
+<td class="hdlist2">
+<p>再帰的に処理</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chown">chown</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs">chown -R owner:group ./</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-R</code>
+</td>
+<td class="hdlist2">
+<p>再帰的に処理</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -577,17 +815,97 @@ lsof -i:80,8080</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usermod">usermod</h2>
+<h2 id="_groupadd_groupmod_groupdel">groupadd, groupmod, groupdel</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>root 権限で実行する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#ch-Managing_Users_and_Groups">第4章 ユーザーとグループの管理</a></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># グループの追加
-usermod -aG $GROUPS $USER
-# グループの置き換え
-usermod -G $GROUPS $USER</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># グループ一覧
+less /etc/group
+
+# グループ追加
+groupadd $GROUP
+
+# グループ削除
+groupdel $GROUP</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_useradd_usermod_userdel">useradd, usermod, userdel</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#ch-Managing_Users_and_Groups">第4章 ユーザーとグループの管理</a></p>
+</li>
+<li>
+<p>ref. <a href="http://www.rivhiro-weather.com/knowledge/?p=168">デフォルトのパーミッション設定： umask</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ユーザー一覧
+less /etc/passwd
+
+# ユーザー追加
+useradd --create-home --shell /bin/bash --comment $COMMENT $USER
+
+# ユーザーにグループを追加
+usermod --append --groups $GROUP1,$GROUP2,$GROUP3 $USER
+# ユーザーのグループを上書き(--append がない場合は上書き)
+usermod --groups $GROUP1,$GROUP2,$GROUP3 $USER
+
+# ユーザー削除
+userdel --remove $USER</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">userdel options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--remove</code>
+</td>
+<td class="hdlist2">
+<p>ホームディレクトリを含めて削除</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_passwd">passwd</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>パスワード変更。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 自身のパスワードを変更する
+passwd
+
+# root で他人のパスワードを変更する
+passwd $USER</code></pre>
 </div>
 </div>
 </div>
@@ -942,7 +1260,7 @@ crontab -u $user -r</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. 設定例</caption>
+<caption class="title">Table 4. 設定例</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -979,7 +1297,7 @@ crontab -u $user -r</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. cron ファイルの使い分け</caption>
+<caption class="title">Table 5. cron ファイルの使い分け</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -2304,6 +2622,21 @@ ansible-playbook -i 127.0.0.1, sample.yml -u ubuntu
 #         ...</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>秘密鍵にパスフレーズが付いていると多量の確認を行うことになる。
+そのような場合には ssh-agent の章を参照。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
 <h3 id="_python_のバージョン競合対策">python のバージョン競合対策</h3>
 <div class="paragraph">
@@ -3292,7 +3625,66 @@ psql -h ${host} -p ${port} -U ${user} -d ${database}
 # バックアップ
 pg_dump -h ${host} -p ${port} -U ${user} ${database_name} &gt; backup_file_name
 # リストア
-psql ${database_name} &lt; backup_file_name</code></pre>
+psql -h $host -p $port -U $username -d $databasename -f $dumpfile</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">pg_dump options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--no-owner</code>
+</td>
+<td class="hdlist2">
+<p>owner を付与しない。異なる role で DB をリストアするような場合に使える。</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="sql" class="language-sql hljs">-- ロール(ユーザー)一覧
+\du
+-- ロール(ユーザー)作成
+create role rolename with login password 'password';
+-- ロール(ユーザー)削除
+drop role rolename;
+
+-- データベース一覧
+\l
+-- データベース作成
+create database newdb;
+-- データベース削除
+drop database targetdb;
+-- データベース切り替え
+\c dbname
+-- 選択中のデータベースを確認
+select current_database();
+
+-- スキーマ一覧
+\dn
+
+-- テーブル一覧
+\dt
+
+-- インデックス一覧
+\di
+-- インデックス一覧(スキーマ指定)
+\di schema.*
+-- インデックス詳細
+\d indexname
+-- インデックス詳細(スキーマ指定)
+\d schema.indexname</code></pre>
 </div>
 </div>
 <div class="sect2">
@@ -3471,6 +3863,50 @@ ssh-keygen -e -m pem -f ${input}.pub &gt; ${output}.pub.pem</code></pre>
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_ssh_agent">ssh-agent</h3>
+<div class="paragraph">
+<p>秘密鍵のパスフレーズ入力を省略したいときに便利。
+ansible とか ansible とか ansible とか。。。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html">ssh-agentを使って公開鍵認証方式のsshパスワード入力を省略する方法</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ssh-agentの起動
+eval `ssh-agent`
+# ssh-agentに秘密鍵を登録
+ssh-add ~/.ssh/private-key
+
+# ansible 実行
+ansible --inventory staging --module-name ping servers
+
+# ssh-agentの終了
+eval `ssh-agent -k`</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ssh-agent はターミナルを閉じても自動的に終了しない。
+起動するごとにプロセスが溜まっていくため終了するように努める。
+終了を忘れた場合には kill する。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3593,7 +4029,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-13 20:32:50 +0900
+Last updated 2021-01-14 20:34:08 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
