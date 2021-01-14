@@ -11,6 +11,8 @@
 
 include::./contents/lsof.adoc[]
 
+include::./contents/group.adoc[]
+
 include::./contents/user.adoc[]
 
 include::./contents/tee.adoc[]
