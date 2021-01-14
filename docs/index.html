@@ -3606,7 +3606,66 @@ psql -h ${host} -p ${port} -U ${user} -d ${database}
 # バックアップ
 pg_dump -h ${host} -p ${port} -U ${user} ${database_name} &gt; backup_file_name
 # リストア
-psql ${database_name} &lt; backup_file_name</code></pre>
+psql -h $host -p $port -U $username -d $databasename -f $dumpfile</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">pg_dump options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--no-owner</code>
+</td>
+<td class="hdlist2">
+<p>owner を付与しない。異なる role で DB をリストアするような場合に使える。</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="sql" class="language-sql hljs">-- ロール(ユーザー)一覧
+\du
+-- ロール(ユーザー)作成
+create role rolename with login password 'password';
+-- ロール(ユーザー)削除
+drop role rolename;
+
+-- データベース一覧
+\l
+-- データベース作成
+create database newdb;
+-- データベース削除
+drop database targetdb;
+-- データベース切り替え
+\c dbname
+-- 選択中のデータベースを確認
+select current_database();
+
+-- スキーマ一覧
+\dn
+
+-- テーブル一覧
+\dt
+
+-- インデックス一覧
+\di
+-- インデックス一覧(スキーマ指定)
+\di schema.*
+-- インデックス詳細
+\d indexname
+-- インデックス詳細(スキーマ指定)
+\d schema.indexname</code></pre>
 </div>
 </div>
 <div class="sect2">
