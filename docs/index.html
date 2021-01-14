@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_firewall">firewall</a></li>
 <li><a href="#_grep">grep</a></li>
 <li><a href="#_nginx">nginx</a></li>
 <li><a href="#_httpd">httpd</a></li>
@@ -559,6 +560,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="ubuntu.html">ubuntu</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_firewall">firewall</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">firewall-cmd</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># list
+firewall-cmd --list-all
+# list (full?)
+firewall-cmd --list-all-zones
+
+# add
+firewall-cmd --zone=public --add-rich-rule='rule familiy=ipv4 source address="xxx.xxx.xxx.xxx/xx" port port="xxx" protocol="tcp" accept' --permanent
+
+# remove
+firewall-cmd --zone=public --remove-rich-rule='rule familiy=ipv4 source address="xxx.xxx.xxx.xxx/xx" port port="xxx" protocol="tcp" accept' --permanent
+
+# reload
+firewall-cmd --reload</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3883,7 +3907,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-14 20:30:29 +0900
+Last updated 2021-01-14 20:34:08 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
