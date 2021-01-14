@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_httpd">httpd</a></li>
 <li><a href="#_chmod">chmod</a></li>
 <li><a href="#_chown">chown</a></li>
 <li><a href="#_lsof">lsof</a></li>
@@ -556,6 +557,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="ubuntu.html">ubuntu</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_httpd">httpd</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># conf ファイルのチェック
+apachectl configtest
+
+# conf ファイルのチェック(OS, ディストリビューションによってはこちら)
+apache2ctl configtest</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3843,7 +3858,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-14 18:35:54 +0900
+Last updated 2021-01-14 18:40:27 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

@@ -1,0 +1,10 @@
+== httpd
+
+[source,bash]
+----
+# conf ファイルのチェック
+apachectl configtest
+
+# conf ファイルのチェック(OS, ディストリビューションによってはこちら)
+apache2ctl configtest
+----
