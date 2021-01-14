@@ -1,0 +1,8 @@
+== grep
+
+[source,bash]
+----
+# コメントアウト行(#)の除外
+# ref. https://qiita.com/notakaos/items/91d807f3151694e6c7a8
+cat $FILE | grep -v '^\s*#' | grep -v '^\s*$'
+----

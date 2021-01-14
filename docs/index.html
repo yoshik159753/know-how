@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_grep">grep</a></li>
 <li><a href="#_nginx">nginx</a></li>
 <li><a href="#_httpd">httpd</a></li>
 <li><a href="#_chmod">chmod</a></li>
@@ -558,6 +559,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="ubuntu.html">ubuntu</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grep">grep</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># コメントアウト行(#)の除外
+# ref. https://qiita.com/notakaos/items/91d807f3151694e6c7a8
+cat $FILE | grep -v '^\s*#' | grep -v '^\s*$'</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -3870,7 +3883,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-14 18:42:22 +0900
+Last updated 2021-01-14 20:30:29 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
