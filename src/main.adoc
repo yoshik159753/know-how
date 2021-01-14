@@ -9,6 +9,8 @@
 * link:php.html[php]
 * link:ubuntu.html[ubuntu]
 
+include::./contents/chmod.adoc[]
+
 include::./contents/chown.adoc[]
 
 include::./contents/lsof.adoc[]

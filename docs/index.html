@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_chmod">chmod</a></li>
 <li><a href="#_chown">chown</a></li>
 <li><a href="#_lsof">lsof</a></li>
 <li><a href="#_groupadd_groupmod_groupdel">groupadd, groupmod, groupdel</a></li>
@@ -555,6 +556,139 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><a href="ubuntu.html">ubuntu</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_chmod">chmod</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># 数値指定
+chmod 755 -R ./
+
+# シンボル指定(カンマで複数指定可能)
+chmod u+rwx,g+rw,o=r -R ./</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">シンボルの指定について</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. 対象</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>u</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ユーザー(user)、オーナー</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">グループ(group)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>o</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">その他(others)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>a</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">すべて(all)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">設定なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">すべて(all)と同様</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. 振る舞い</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値を追加</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値を削除</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>=</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">指定値で上書き</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. パーミッション</caption>
+<colgroup>
+<col style="width: 40%;">
+<col style="width: 60%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">項目</th>
+<th class="tableblock halign-left valign-top">値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>r</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">読み込み権限</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>w</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">書き込み権限</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>x</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">実行権限</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>-R</code>
+</td>
+<td class="hdlist2">
+<p>再帰的に処理</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -1058,7 +1192,7 @@ crontab -u $user -r</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. 設定例</caption>
+<caption class="title">Table 4. 設定例</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -1095,7 +1229,7 @@ crontab -u $user -r</code></pre>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. cron ファイルの使い分け</caption>
+<caption class="title">Table 5. cron ファイルの使い分け</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 20%;">
@@ -3709,7 +3843,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-14 18:19:00 +0900
+Last updated 2021-01-14 18:35:54 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
