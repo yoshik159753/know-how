@@ -1,0 +1,13 @@
+== chown
+
+[source,bash]
+----
+chown -R owner:group ./
+----
+
+options::
++
+--
+[horizontal]
+`-R`:: 再帰的に処理
+--
