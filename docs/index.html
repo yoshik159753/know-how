@@ -444,7 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_lsof">lsof</a></li>
-<li><a href="#_usermod">usermod</a></li>
+<li><a href="#_useradd_usermod_userdel">useradd, usermod, userdel</a></li>
 <li><a href="#_tee">tee</a></li>
 <li><a href="#_pandoc">pandoc</a></li>
 <li><a href="#_image_magick">image magick</a></li>
@@ -577,18 +577,57 @@ lsof -i:80,8080</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usermod">usermod</h2>
+<h2 id="_useradd_usermod_userdel">useradd, usermod, userdel</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>root 権限で実行する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index#ch-Managing_Users_and_Groups">第4章 ユーザーとグループの管理</a></p>
+</li>
+<li>
+<p>ref. <a href="http://www.rivhiro-weather.com/knowledge/?p=168">デフォルトのパーミッション設定： umask</a></p>
+</li>
+</ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># グループの追加
-usermod -aG $GROUPS $USER
-# グループの置き換え
-usermod -G $GROUPS $USER</code></pre>
+<pre class="highlightjs highlight nowrap"><code data-lang="bash" class="language-bash hljs"># ユーザー一覧
+less /etc/passwd
+
+# ユーザー追加
+useradd --create-home --shell /bin/bash --comment $COMMENT $USER
+
+# ユーザーにグループを追加
+usermod --append --groups $GROUP1,$GROUP2,$GROUP3 $USER
+# ユーザーのグループを上書き(--append がない場合は上書き)
+usermod --groups $GROUP1,$GROUP2,$GROUP3 $USER
+
+# ユーザー削除
+userdel --remove $USER</code></pre>
 </div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">userdel options</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>--remove</code>
+</td>
+<td class="hdlist2">
+<p>ホームディレクトリを含めて削除</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -3593,7 +3632,7 @@ apt-cache show ${package}</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-13 20:32:50 +0900
+Last updated 2021-01-14 17:56:37 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
