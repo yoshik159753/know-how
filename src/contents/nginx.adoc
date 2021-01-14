@@ -1,0 +1,7 @@
+== nginx
+
+[source,bash]
+----
+# conf ファイルのチェック
+nginx -t
+----
