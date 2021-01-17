@@ -3655,7 +3655,10 @@ psql -h $host -p $port -U $username -d $databasename -f $dumpfile</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="sql" class="language-sql hljs">-- ロール(ユーザー)一覧
+<pre class="highlightjs highlight nowrap"><code data-lang="sql" class="language-sql hljs">-- メタコマンド一覧
+\?
+
+-- ロール(ユーザー)一覧
 \du
 -- ロール(ユーザー)作成
 create role rolename with login password 'password';
@@ -3678,6 +3681,8 @@ select current_database();
 
 -- テーブル一覧
 \dt
+-- テーブル詳細
+\d tablename
 
 -- インデックス一覧
 \di

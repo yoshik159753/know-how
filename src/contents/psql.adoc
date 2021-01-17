@@ -23,6 +23,9 @@ pg_dump options::
 
 [source,sql]
 ----
+-- メタコマンド一覧
+\?
+
 -- ロール(ユーザー)一覧
 \du
 -- ロール(ユーザー)作成
@@ -46,6 +49,8 @@ select current_database();
 
 -- テーブル一覧
 \dt
+-- テーブル詳細
+\d tablename
 
 -- インデックス一覧
 \di
