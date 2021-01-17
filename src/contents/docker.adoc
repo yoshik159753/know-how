@@ -26,6 +26,8 @@ docker exec -it $CONTAINER /bin/bash
 # カレントディレクトリをマウントした ubuntu コンテナを起動してアタッチ
 docker run -it -v `pwd`:/mnt/host:rw ubuntu /bin/bash
 
+# コンテナ起動 (docker ps -a より確認)
+docker start $CONTAINER_NAME
 # コンテナ停止 (docker ps より確認)
 docker stop $CONTAINER_NAME
 # コンテナ削除 (docker ps -a より確認)
