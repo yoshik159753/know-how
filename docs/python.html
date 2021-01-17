@@ -445,6 +445,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_code_format">code format</a></li>
 <li><a href="#_pytest">pytest</a></li>
+<li><a href="#_alembic">alembic</a>
+<ul class="sectlevel2">
+<li><a href="#_データ型一覧postgresql_ベース">データ型一覧(PostgreSQL ベース)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -519,10 +524,230 @@ pip install --dev autopep8 flake8</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_alembic">alembic</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># インストール
+sudo apt install libpq-dev
+pipenv install psycopg2
+pipenv install --dev alembic
+
+# 初期化
+alembic init
+# マイグレーションファイル生成
+alembic revision -m "create users table"
+# マイグレーション
+alembic upgrade head
+alembic upgrade +2
+# マイグレーション(SQLの出力。実行はしない)
+alembic upgrade ae1027a6acf --sql
+# ロールバック
+alembic downgrade base
+alembic downgrade -1
+# 現在の状態
+alembic current
+# 履歴表示
+alembic history --verbose</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_データ型一覧postgresql_ベース">データ型一覧(PostgreSQL ベース)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://www.postgresql.jp/document/11/html/datatype.html">PostgreSQL 11.5文書 / 第8章 データ型</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>一部のみ。詳細はドキュメント参照。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">データ型</th>
+<th class="tableblock halign-left valign-top">指定値</th>
+<th class="tableblock halign-left valign-top">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bigint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.BIGINT(), sa.BigInteger(), sa.dialects.postgresql.BIGINT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bit(1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.BIT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.BOOLEAN(), sa.Boolean(), sa.dialects.postgresql.BOOLEAN</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bytea</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.Binary(), sa.LargeBinary(), sa.PickleType(), sa.dialects.postgresql.BYTEA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character varying</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.String(), sa.Unicode(), sa.VARCHAR(), sa.dialects.postgresql.VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character varyingが長さ指定なしで使われた時は、いかなる長さの文字列でも受け付けます。(PostgreSQLの拡張)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character varying(256)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.String(256), sa.VARCHAR(256)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character varying[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.ARRAY(sa.String())</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">character(1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.CHAR(), sa.NCHAR(), sa.dialects.postgresql.CHAR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cidr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.CIDR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.DATE(), sa.Date(), sa.dialects.postgresql.DATE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">double precision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.FLOAT(), sa.Float(), sa.dialects.postgresql.FLOAT, sa.dialects.postgresql.DOUBLE_PRECISION</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.INET</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.INT(), sa.INTEGER(), sa.Integer(), sa.dialects.postgresql.INTEGER</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">integer[]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.ARRAY(sa.Integer())</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.Interval(), sa.dialects.postgresql.INTERVAL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">json</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.JSON()</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">macaddr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.MACADDR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">money</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.MONEY</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numeric</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.DECIMAL(), sa.NUMERIC(), sa.Numeric(), sa.dialects.postgresql.NUMERIC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.OID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.Enum(ClassName, values_callable=lambda obj: [e.value for e in obj])</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">real</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.REAL(), sa.dialects.postgresql.REAL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regclass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.REGCLASS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">smallint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.SMALLINT(), sa.SmallInteger(), sa.dialects.postgresql.SMALLINT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.TEXT(), sa.Text(), sa.UnicodeText(), sa.dialects.postgresql.TEXT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">いかなる長さの文字列でも格納できるtextをサポートします。 text型は標準SQLにはありませんが、多くの他のSQLデータベース管理システムも同様にサポートしています。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">time without time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.TIME(), sa.Time(), sa.dialects.postgresql.TIME</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.DateTime(timezone=True)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with time zoneについて内部に格納されている値は常にUTCです。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp without time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.DateTime(), sa.DateTime(timezone=False), sa.TIMESTAMP(), sa.dialects.postgresql.TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tsvector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.TSVECTOR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uuid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sa.dialects.postgresql.UUID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-04 06:32:24 +0900
+Last updated 2021-01-17 22:24:53 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
