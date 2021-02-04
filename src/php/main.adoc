@@ -40,3 +40,148 @@ sudo chmod +x /usr/local/bin/php-cs-fixer
   "php-cs-fixer.rules": "@PSR2",
 }
 ----
+
+== laravel tips
+
+[source,php]
+.ログ出力
+----
+// 配列で設定するのが大事
+logger([$var]);
+----
+
+[source,php]
+.SQL 確認
+----
+$sql = DB::table('users')
+            ->where('status', '<>', 1);
+logger($sql->toSql());
+----
+
+[source,php]
+.query builder で now を指定する場合は Carbon::now()
+----
+$job = $jobs->where('closing_at', '>=', Carbon::now())
+        ->orderBy($sorter[0], $sorter[1])->paginate(24);
+----
+
+[source,text]
+.メールをログに出力する
+----
+# .env の MAIL_DRIVER に log を指定する
+...
+MAIL_DRIVER=log
+...
+----
+
+== artisan コマンド
+
+[source,bash]
+----
+# コマンドの一覧を見る
+php artisan list
+
+# migrate 用ファイルを生成する
+php artisan make:migration create_links_table --create=links
+# migration の実施状況を見る
+php artisan migrate:status
+# migrate する
+php artisan migrate
+# (denger!!!) all drop してから migrate する
+php artisan migrate:fresh
+# (denger!!!) all drop してから migrate して seed を埋め込む(テストデータをインサートする)
+php artisan migrate:fresh --seed
+# モデルとファクトリーの生成
+php artisan make:model --factory Link
+# xxx テーブル用の seeder 生成(テストデータ生成用ファイルの生成)
+php artisan make:seeder LinksTableSeeder
+# feature test (機能テスト) 用のファイルを生成
+php artisan make:test SubmitLinksTest
+# test の実行
+php artisan test
+----
+
+== laradock
+
+[source,bash]
+.スタートアップガイド
+----
+# ref. https://laravel-news.com/your-first-laravel-application
+
+sudo apt update -y
+sudo apt install -y php composer
+
+composer create-project --prefer-dist laravel/laravel links "7.*"
+
+# 初期化したプロジェクトのソースを一式コミット
+git init
+git add .
+git commit
+
+# laradock のディレクトリを無視
+echo laradock >> .git/info/exclude
+
+# laradock の設定
+mkdir laradock
+cd laradock
+git init
+git remote origin add $laradock_repo
+git fetch
+git checkout master
+cp env-example .env
+# COMPOSE_PROJECT_NAME を変えて docker のコンテナ名がコンフリクトしないようにする
+vi .env
+
+# laravel の DATABASE の接続情報を laradock に合わせる
+vi ../.env
+
+# laradock 起動
+docker-compose up -d nginx mysql phpmyadmin
+
+# laravel 初期化
+docker-compose exec workspace composer install
+docker-compose exec workspace php artisan key:generate
+----
+
+[TIP]
+====
+フロント側の `npm xxx` はコンテナの外でやった方がいいかも。
+コンテナには node が入ってないっぽいので。
+====
+
+== ハッシュ化
+
+[source,php]
+----
+// インタラクティブシェルを起動
+// php -a
+
+// MD5
+echo md5('string');
+----
+
+== 暗号/復号化
+
+ref. https://www.php.net/manual/ja/function.openssl-encrypt.php
+
+[source,php]
+----
+// インタラクティブシェルを起動
+// php -a
+
+// 暗号化
+echo openssl_encrypt($plaintext, 'aes-256-ecb', $key);
+// 復号化
+echo openssl_decrypt($data, 'aes-256-ecb', $key);
+----
+
+== phpinfo の表示
+
+[source,bash]
+----
+# ブラウザから見る
+echo '<?php phpinfo();' > phpinfo.php
+
+# コマンドラインから見る
+php -i
+----

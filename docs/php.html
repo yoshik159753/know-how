@@ -444,6 +444,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_code_format">code format</a></li>
+<li><a href="#_laravel_tips">laravel tips</a></li>
+<li><a href="#_artisan_コマンド">artisan コマンド</a></li>
+<li><a href="#_laradock">laradock</a></li>
+<li><a href="#_ハッシュ化">ハッシュ化</a></li>
+<li><a href="#_暗号復号化">暗号/復号化</a></li>
+<li><a href="#_phpinfo_の表示">phpinfo の表示</a></li>
 </ul>
 </div>
 </div>
@@ -514,10 +520,183 @@ sudo chmod +x /usr/local/bin/php-cs-fixer</code></pre>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_laravel_tips">laravel tips</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">ログ出力</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// 配列で設定するのが大事
+logger([$var]);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">SQL 確認</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">$sql = DB::table('users')
+            -&gt;where('status', '&lt;&gt;', 1);
+logger($sql-&gt;toSql());</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">query builder で now を指定する場合は Carbon::now()</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">$job = $jobs-&gt;where('closing_at', '&gt;=', Carbon::now())
+        -&gt;orderBy($sorter[0], $sorter[1])-&gt;paginate(24);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">メールをログに出力する</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="text" class="language-text hljs"># .env の MAIL_DRIVER に log を指定する
+...
+MAIL_DRIVER=log
+...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_artisan_コマンド">artisan コマンド</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># コマンドの一覧を見る
+php artisan list
+
+# migrate 用ファイルを生成する
+php artisan make:migration create_links_table --create=links
+# migration の実施状況を見る
+php artisan migrate:status
+# migrate する
+php artisan migrate
+# (denger!!!) all drop してから migrate する
+php artisan migrate:fresh
+# (denger!!!) all drop してから migrate して seed を埋め込む(テストデータをインサートする)
+php artisan migrate:fresh --seed
+# モデルとファクトリーの生成
+php artisan make:model --factory Link
+# xxx テーブル用の seeder 生成(テストデータ生成用ファイルの生成)
+php artisan make:seeder LinksTableSeeder
+# feature test (機能テスト) 用のファイルを生成
+php artisan make:test SubmitLinksTest
+# test の実行
+php artisan test</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_laradock">laradock</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">スタートアップガイド</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ref. https://laravel-news.com/your-first-laravel-application
+
+sudo apt update -y
+sudo apt install -y php composer
+
+composer create-project --prefer-dist laravel/laravel links "7.*"
+
+# 初期化したプロジェクトのソースを一式コミット
+git init
+git add .
+git commit
+
+# laradock のディレクトリを無視
+echo laradock &gt;&gt; .git/info/exclude
+
+# laradock の設定
+mkdir laradock
+cd laradock
+git init
+git remote origin add $laradock_repo
+git fetch
+git checkout master
+cp env-example .env
+# COMPOSE_PROJECT_NAME を変えて docker のコンテナ名がコンフリクトしないようにする
+vi .env
+
+# laravel の DATABASE の接続情報を laradock に合わせる
+vi ../.env
+
+# laradock 起動
+docker-compose up -d nginx mysql phpmyadmin
+
+# laravel 初期化
+docker-compose exec workspace composer install
+docker-compose exec workspace php artisan key:generate</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>フロント側の <code>npm xxx</code> はコンテナの外でやった方がいいかも。
+コンテナには node が入ってないっぽいので。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ハッシュ化">ハッシュ化</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// インタラクティブシェルを起動
+// php -a
+
+// MD5
+echo md5('string');</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_暗号復号化">暗号/復号化</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ref. <a href="https://www.php.net/manual/ja/function.openssl-encrypt.php" class="bare">https://www.php.net/manual/ja/function.openssl-encrypt.php</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// インタラクティブシェルを起動
+// php -a
+
+// 暗号化
+echo openssl_encrypt($plaintext, 'aes-256-ecb', $key);
+// 復号化
+echo openssl_decrypt($data, 'aes-256-ecb', $key);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_phpinfo_の表示">phpinfo の表示</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs"># ブラウザから見る
+echo '&lt;?php phpinfo();' &gt; phpinfo.php
+
+# コマンドラインから見る
+php -i</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-13 20:31:11 +0900
+Last updated 2021-02-04 23:11:49 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
