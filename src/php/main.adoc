@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/array.adoc[]
+
 include::./contents/code_format.adoc[]
 
 include::./contents/laravel.adoc[]
