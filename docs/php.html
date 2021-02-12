@@ -443,6 +443,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_array">array</a></li>
 <li><a href="#_code_format">code format</a></li>
 <li><a href="#_laravel_tips">laravel tips</a></li>
 <li><a href="#_artisan_コマンド">artisan コマンド</a></li>
@@ -454,6 +455,118 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_array">array</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">foreach</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">foreach ($array as $key =&gt; $value) {
+    echo "\$array[$key] =&gt; $value.\n";
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">array_filter — コールバック関数を使用して、配列の要素をフィルタリングする</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// $value が奇数のものでフィルタリング
+// ARRAY_FILTER_USE_BOTH で value と key を扱える
+$array = ['a' =&gt; 1, 'b' =&gt; 2, 'c' =&gt; 3, 'd' =&gt; 4, 'e' =&gt; 5];
+print_r(array_filter($array, function ($value, $key) {
+    return $value &amp; 1;
+}, ARRAY_FILTER_USE_BOTH));
+
+// Array
+// (
+//     [a] =&gt; 1
+//     [c] =&gt; 3
+//     [e] =&gt; 5
+// )</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">array_map — 指定した配列の要素にコールバック関数を適用する</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">// $value の値を２倍する
+$array = ['a' =&gt; 3, 'b' =&gt; 5, 'c' =&gt; 7];
+print_r(array_map(function ($value) {
+    return $value * 2;
+}, $array));
+
+// Array
+// (
+//     [a] =&gt; 6
+//     [b] =&gt; 10
+//     [c] =&gt; 14
+// )</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">array_map で zip 操作</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">$a = [1, 2, 3, 4, 5];
+$b = ['one', 'two', 'three', 'four', 'five'];
+$c = ['uno', 'dos', 'tres', 'cuatro', 'cinco'];
+print_r(array_map(null, $a, $b, $c));
+
+// Array
+// (
+//     [0] =&gt; Array
+//         (
+//             [0] =&gt; 1
+//             [1] =&gt; one
+//             [2] =&gt; uno
+//         )
+//     ...
+// )</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">array_reduce — コールバック関数を用いて配列を普通の値に変更することにより、配列を再帰的に減らす</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="php" class="language-php hljs">$array = array(1, 2, 3, 4, 5);
+var_dump(array_reduce($array, function ($carry, $value) {
+    $carry *= $value;
+    return $carry;
+}, 10));
+
+// int(1200), because: 10*1*2*3*4*5
+// initial に 10 を指定しているため初回の $carry は 10 になる</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>その他の有用そうな関数たち。</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+array_keys
+</td>
+<td class="hdlist2">
+<p>配列のキーすべて、あるいはその一部を返す</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+array_values
+</td>
+<td class="hdlist2">
+<p>配列の全ての値を返す</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+array_merge
+</td>
+<td class="hdlist2">
+<p>ひとつまたは複数の配列をマージする</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_code_format">code format</h2>
 <div class="sectionbody">
@@ -696,7 +809,7 @@ php -i</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-02-04 23:11:49 +0900
+Last updated 2021-02-12 23:39:03 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
