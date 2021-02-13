@@ -1,0 +1,16 @@
+== code style
+
+* ref. https://python-guideja.readthedocs.io/ja/latest/index.html[Python ヒッチハイク・ガイド]
+* ref. https://python-guideja.readthedocs.io/ja/latest/writing/style.html#id5[Python ヒッチハイク・ガイド - コードスタイル - 関数の引数]
+
+=== キーワード引数を使うかどうか
+
+[quote, Python ヒッチハイク・ガイド - コードスタイル - 関数の引数]
+____
+キーワード引数 は必須ではなく、デフォルト値を持ちます。
+これらは、関数に送信されるオプションのパラメータによく使用されます。
+関数に2つまたは3つ以上の位置パラメータがある場合、そのシグネチャは覚えにくいため、キーワード引数をデフォルト値で使用すると便利です。
+例えば、より完全な send 関数は send(message, to, cc=None, bcc=None) として定義できます。ここで、 cc と bcc はオプションで、別の値が渡されないときは None と評価されます。
+____
+
+「関数に2つまたは3つ以上の位置パラメータがある場合」とあるので、3つ以上の引数がある場合はキーワード引数がよいのかも。

@@ -8,6 +8,8 @@ include::./contents/vscode.adoc[]
 
 include::./contents/code-format.adoc[]
 
+include::./contents/code-style.adoc[]
+
 include::./contents/pytest.adoc[]
 
 include::./contents/alembic.adoc[]

@@ -445,6 +445,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_vscode">vscode</a></li>
 <li><a href="#_code_format">code format</a></li>
+<li><a href="#_code_style">code style</a>
+<ul class="sectlevel2">
+<li><a href="#_キーワード引数を使うかどうか">キーワード引数を使うかどうか</a></li>
+</ul>
+</li>
 <li><a href="#_pytest">pytest</a></li>
 <li><a href="#_alembic">alembic</a>
 <ul class="sectlevel2">
@@ -520,6 +525,40 @@ pip install --dev autopep8 flake8</code></pre>
     "--max-line-length=120"
   ]
 }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_style">code style</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://python-guideja.readthedocs.io/ja/latest/index.html">Python ヒッチハイク・ガイド</a></p>
+</li>
+<li>
+<p>ref. <a href="https://python-guideja.readthedocs.io/ja/latest/writing/style.html#id5">Python ヒッチハイク・ガイド - コードスタイル - 関数の引数</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_キーワード引数を使うかどうか">キーワード引数を使うかどうか</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>キーワード引数 は必須ではなく、デフォルト値を持ちます。
+これらは、関数に送信されるオプションのパラメータによく使用されます。
+関数に2つまたは3つ以上の位置パラメータがある場合、そのシグネチャは覚えにくいため、キーワード引数をデフォルト値で使用すると便利です。
+例えば、より完全な send 関数は send(message, to, cc=None, bcc=None) として定義できます。ここで、 cc と bcc はオプションで、別の値が渡されないときは None と評価されます。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Python ヒッチハイク・ガイド - コードスタイル - 関数の引数
+</div>
+</div>
+<div class="paragraph">
+<p>「関数に2つまたは3つ以上の位置パラメータがある場合」とあるので、3つ以上の引数がある場合はキーワード引数がよいのかも。</p>
 </div>
 </div>
 </div>
