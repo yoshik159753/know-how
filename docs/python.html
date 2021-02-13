@@ -448,6 +448,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_code_style">code style</a>
 <ul class="sectlevel2">
 <li><a href="#_キーワード引数を使うかどうか">キーワード引数を使うかどうか</a></li>
+<li><a href="#_アスタリスク">アスタリスク (*)</a></li>
 </ul>
 </li>
 <li><a href="#_pytest">pytest</a></li>
@@ -559,6 +560,70 @@ pip install --dev autopep8 flake8</code></pre>
 </div>
 <div class="paragraph">
 <p>「関数に2つまたは3つ以上の位置パラメータがある場合」とあるので、3つ以上の引数がある場合はキーワード引数がよいのかも。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_アスタリスク">アスタリスク (*)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://qiita.com/LouiS0616/items/1bbe0a9bb93054f6c380">Python3.xのアスタリスク逆引き</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">アスタリスク * (仮引数名アリ)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def useless_func(a, b, *args, c, d):
+    pass
+
+useless_func(1, 2, 3, 4, 5, 6)     # NG
+useless_func(1, 2, 3, 4, c=5, d=6) # OK
+
+# OK の場合は次のように割り当てられる
+# a: 1
+# b: 2
+# args: (3, 4)
+# c: 5
+# d: 6</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">アスタリスク * (仮引数名ナシ)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs"># 仮引数名ナシの場合、以降(例では c, d)はキーワード引数を強制する
+def useless_func(a, b, *, c, d):
+    pass
+
+useless_func(1, 2, 3, 4, c=5, d=6)  # NG
+useless_func(1, 2, c=5, d=6)        # OK
+# OK の場合は次のように割り当てられる
+# a: 1
+# b: 2
+# c: 5
+# d: 6</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">アスタリスク **</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs"># ** はキーワード引数を辞書にまとめる
+def useless_func(**kwargs):
+    print(kwargs)
+
+useless_func(a=1, b=2, c=3)
+# {'a': 1, 'b': 2, 'c': 3}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ありとあらゆる引数を受け取る関数</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def useless_func(*args, **kwargs):
+    print(args, kwargs)
+
+useless_func(1, 2, 3, a=1, b=2, c=3)
+# (1, 2, 3) {'a': 1, 'b': 2, 'c': 3}</code></pre>
+</div>
 </div>
 </div>
 </div>

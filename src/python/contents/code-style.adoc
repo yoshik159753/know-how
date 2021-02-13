@@ -14,3 +14,61 @@ ____
 ____
 
 「関数に2つまたは3つ以上の位置パラメータがある場合」とあるので、3つ以上の引数がある場合はキーワード引数がよいのかも。
+
+=== アスタリスク (*)
+
+* ref. https://qiita.com/LouiS0616/items/1bbe0a9bb93054f6c380[Python3.xのアスタリスク逆引き]
+
+[source,python]
+.アスタリスク * (仮引数名アリ)
+----
+def useless_func(a, b, *args, c, d):
+    pass
+
+useless_func(1, 2, 3, 4, 5, 6)     # NG
+useless_func(1, 2, 3, 4, c=5, d=6) # OK
+
+# OK の場合は次のように割り当てられる
+# a: 1
+# b: 2
+# args: (3, 4)
+# c: 5
+# d: 6
+----
+
+[source,python]
+.アスタリスク * (仮引数名ナシ)
+----
+# 仮引数名ナシの場合、以降(例では c, d)はキーワード引数を強制する
+def useless_func(a, b, *, c, d):
+    pass
+
+useless_func(1, 2, 3, 4, c=5, d=6)  # NG
+useless_func(1, 2, c=5, d=6)        # OK
+# OK の場合は次のように割り当てられる
+# a: 1
+# b: 2
+# c: 5
+# d: 6
+----
+
+[source,python]
+.アスタリスク **
+----
+# ** はキーワード引数を辞書にまとめる
+def useless_func(**kwargs):
+    print(kwargs)
+
+useless_func(a=1, b=2, c=3)
+# {'a': 1, 'b': 2, 'c': 3}
+----
+
+[source,python]
+.ありとあらゆる引数を受け取る関数
+----
+def useless_func(*args, **kwargs):
+    print(args, kwargs)
+
+useless_func(1, 2, 3, a=1, b=2, c=3)
+# (1, 2, 3) {'a': 1, 'b': 2, 'c': 3}
+----
