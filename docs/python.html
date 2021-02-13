@@ -449,6 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_キーワード引数を使うかどうか">キーワード引数を使うかどうか</a></li>
 <li><a href="#_アスタリスク">アスタリスク (*)</a></li>
+<li><a href="#_アンダーバー">アンダーバー (_)</a></li>
 </ul>
 </li>
 <li><a href="#_pytest">pytest</a></li>
@@ -624,6 +625,101 @@ useless_func(a=1, b=2, c=3)
 useless_func(1, 2, 3, a=1, b=2, c=3)
 # (1, 2, 3) {'a': 1, 'b': 2, 'c': 3}</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_アンダーバー">アンダーバー (_)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>ref. <a href="https://qiita.com/kiii142/items/6879cb065ad4c5f0b901">pythonのアンダーバーこれなんやねん</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">return値を無視するための_</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">H,W,_ = img.shape</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">_function(x): 関数前に1つ</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def _single_leading_underscore(x):
+    return n
+#weak "internal use" indicator. E.g. from M import *
+#does not import objects whose names start with an underscore.</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>基本的に外部からの参照を受け付けない，ってものにはアンダーバーを1つつけるというのがpythonの習わしのようです。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; _function(x): 関数前に1つ
+</div>
+</div>
+<div class="listingblock">
+<div class="title">__function(x): クラス名の前に２つ</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def __double_leading_underscore:
+     return n
+#when naming a class attribute, invokes name mangling
+#(inside class FooBar, __boo becomes _FooBar__boo; see below).</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>外部からのアクセスを受け付けませんよ対策の１つと言えるのではないかと思います。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; __function(x): クラス名の前に２つ
+</div>
+</div>
+<div class="listingblock">
+<div class="title">function(x)_： 関数後に1つ</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def list_(x):
+    return n
+#used by convention to avoid conflicts with Python keyword</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>pythonの予約語をどーしても関数名に使いたい時には，後ろに１つ_つけてつかいわけろ，ということみたいです。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; function(x)_： 関数後に1つ
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><em>function</em>(x): 関数前後に2つずつ</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="python" class="language-python hljs">def __double_leading_and_trailing_underscore__:
+    return n
+# "magic" objects or attributes that live in user-controlled
+# namespaces. E.g. __init__, __import__ or __file__. Never invent
+# such names; only use them as documented.``</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>オブジェクトの振る舞いを変更したり，クラスの性質にあった動きをさせたい時に使うものなんだそうです。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; __function__(x): 関数前後に2つずつ
+</div>
+</div>
+<div class="paragraph">
+<p>ref. <a href="https://docs.python.org/ja/3/reference/datamodel.html#special-method-names">Python 言語リファレンス - 特殊メソッド名</a></p>
 </div>
 </div>
 </div>
@@ -865,7 +961,7 @@ alembic history --verbose</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-01-17 22:24:53 +0900
+Last updated 2021-02-13 21:33:54 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
