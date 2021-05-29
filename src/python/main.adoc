@@ -4,6 +4,8 @@
 :icons: font
 :source-highlighter: highlightjs
 
+include::./contents/for.adoc[]
+
 include::./contents/vscode.adoc[]
 
 include::./contents/code-format.adoc[]
